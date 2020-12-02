@@ -1,33 +1,35 @@
-Sending build context to Docker daemon  1.346MB
-Step 1/19 : FROM debian:buster
+Sending build context to Docker daemon  2.999MB
+Step 1/20 : FROM debian:buster
 buster: Pulling from library/debian
-d6ff36c9ec48: Pulling fs layer
-d6ff36c9ec48: Download complete
-d6ff36c9ec48: Pull complete
-Digest: sha256:1e74c92df240634a39d050a5e23fb18f45df30846bb222f543414da180b47a5d
+756975cb9c7e: Already exists
+Digest: sha256:e2cc6fb403be437ef8af68bdc3a89fd58e80b4e390c58f14c77c466002391193
 Status: Downloaded newer image for debian:buster
- ---> ee11c54e6bb7
-Step 2/19 : ADD --chown=root:root endless.origins /etc/dpkg/origins/endless
- ---> b1a0f45fba09
-Step 3/19 : RUN echo "deb-src http://deb.debian.org/debian buster main" > /etc/apt/sources.list.d/deb-src.list
- ---> Running in 91944a4cbcb3
-Removing intermediate container 91944a4cbcb3
- ---> 754433334085
-Step 4/19 : RUN apt-get update -y
- ---> Running in 954ee09ea862
-Get:1 http://deb.debian.org/debian buster InRelease [122 kB]
-Get:2 http://deb.debian.org/debian buster-updates InRelease [51.9 kB]
-Get:3 http://security.debian.org/debian-security buster/updates InRelease [65.4 kB]
-Get:4 http://deb.debian.org/debian buster/main Sources [7840 kB]
-Get:5 http://security.debian.org/debian-security buster/updates/main amd64 Packages [220 kB]
-Get:6 http://deb.debian.org/debian buster/main amd64 Packages [7906 kB]
-Get:7 http://deb.debian.org/debian buster-updates/main amd64 Packages [7868 B]
-Fetched 16.2 MB in 3s (4840 kB/s)
+ ---> ef05c61d5112
+Step 2/20 : ADD --chown=root:root deepin.origins /etc/dpkg/origins/deepin
+ ---> 9493597f2787
+Step 3/20 : RUN echo "deb http://mirrors.163.com/debian buster main contrib non-free" > /etc/apt/sources.list
+ ---> Running in b7999ebaf33d
+Removing intermediate container b7999ebaf33d
+ ---> efd330d10002
+Step 4/20 : RUN echo "deb-src http://mirrors.163.com/debian buster main contrib non-free" >> /etc/apt/sources.list
+ ---> Running in bf129933a36f
+Removing intermediate container bf129933a36f
+ ---> ffad84f9706a
+Step 5/20 : RUN apt-get update -y
+ ---> Running in 0160bed820f5
+Get:1 http://mirrors.163.com/debian buster InRelease [121 kB]
+Get:2 http://mirrors.163.com/debian buster/main Sources [7841 kB]
+Get:3 http://mirrors.163.com/debian buster/contrib Sources [42.9 kB]
+Get:4 http://mirrors.163.com/debian buster/non-free Sources [85.6 kB]
+Get:5 http://mirrors.163.com/debian buster/non-free amd64 Packages [87.7 kB]
+Get:6 http://mirrors.163.com/debian buster/contrib amd64 Packages [50.5 kB]
+Get:7 http://mirrors.163.com/debian buster/main amd64 Packages [7906 kB]
+Fetched 16.1 MB in 4s (4452 kB/s)
 Reading package lists...
-Removing intermediate container 954ee09ea862
- ---> 6f993ff6af31
-Step 5/19 : RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends build-essential devscripts git
- ---> Running in 94ca9769b0c8
+Removing intermediate container 0160bed820f5
+ ---> 166bc2082afd
+Step 6/20 : RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends build-essential devscripts git
+ ---> Running in 62ccd98c70ee
 Reading package lists...
 Building dependency tree...
 Reading state information...
@@ -122,145 +124,145 @@ The following NEW packages will be installed:
 0 upgraded, 137 newly installed, 0 to remove and 0 not upgraded.
 Need to get 82.7 MB of archives.
 After this operation, 333 MB of additional disk space will be used.
-Get:1 http://deb.debian.org/debian buster/main amd64 perl-modules-5.28 all 5.28.1-6+deb10u1 [2873 kB]
-Get:2 http://deb.debian.org/debian buster/main amd64 libgdbm6 amd64 1.18.1-4 [64.7 kB]
-Get:3 http://deb.debian.org/debian buster/main amd64 libgdbm-compat4 amd64 1.18.1-4 [44.1 kB]
-Get:4 http://deb.debian.org/debian buster/main amd64 libperl5.28 amd64 5.28.1-6+deb10u1 [3894 kB]
-Get:5 http://deb.debian.org/debian buster/main amd64 perl amd64 5.28.1-6+deb10u1 [204 kB]
-Get:6 http://deb.debian.org/debian buster/main amd64 libssl1.1 amd64 1.1.1d-0+deb10u3 [1538 kB]
-Get:7 http://deb.debian.org/debian buster/main amd64 libpython3.7-minimal amd64 3.7.3-2+deb10u2 [589 kB]
-Get:8 http://deb.debian.org/debian buster/main amd64 libexpat1 amd64 2.2.6-2+deb10u1 [106 kB]
-Get:9 http://deb.debian.org/debian buster/main amd64 python3.7-minimal amd64 3.7.3-2+deb10u2 [1731 kB]
-Get:10 http://deb.debian.org/debian buster/main amd64 python3-minimal amd64 3.7.3-1 [36.6 kB]
-Get:11 http://deb.debian.org/debian buster/main amd64 mime-support all 3.62 [37.2 kB]
-Get:12 http://deb.debian.org/debian buster/main amd64 libmpdec2 amd64 2.4.2-2 [87.2 kB]
-Get:13 http://deb.debian.org/debian buster/main amd64 readline-common all 7.0-5 [70.6 kB]
-Get:14 http://deb.debian.org/debian buster/main amd64 libreadline7 amd64 7.0-5 [151 kB]
-Get:15 http://deb.debian.org/debian buster/main amd64 libsqlite3-0 amd64 3.27.2-3 [641 kB]
-Get:16 http://deb.debian.org/debian buster/main amd64 libpython3.7-stdlib amd64 3.7.3-2+deb10u2 [1732 kB]
-Get:17 http://deb.debian.org/debian buster/main amd64 python3.7 amd64 3.7.3-2+deb10u2 [330 kB]
-Get:18 http://deb.debian.org/debian buster/main amd64 libpython3-stdlib amd64 3.7.3-1 [20.0 kB]
-Get:19 http://deb.debian.org/debian buster/main amd64 python3 amd64 3.7.3-1 [61.5 kB]
-Get:20 http://deb.debian.org/debian buster/main amd64 netbase all 5.6 [19.4 kB]
-Get:21 http://deb.debian.org/debian buster/main amd64 sensible-utils all 0.0.12 [15.8 kB]
-Get:22 http://deb.debian.org/debian buster/main amd64 bzip2 amd64 1.0.6-9.2~deb10u1 [48.4 kB]
-Get:23 http://deb.debian.org/debian buster/main amd64 libmagic-mgc amd64 1:5.35-4+deb10u1 [242 kB]
-Get:24 http://deb.debian.org/debian buster/main amd64 libmagic1 amd64 1:5.35-4+deb10u1 [117 kB]
-Get:25 http://deb.debian.org/debian buster/main amd64 file amd64 1:5.35-4+deb10u1 [66.4 kB]
-Get:26 http://deb.debian.org/debian buster/main amd64 xz-utils amd64 5.2.4-1 [183 kB]
-Get:27 http://deb.debian.org/debian buster/main amd64 binutils-common amd64 2.31.1-16 [2073 kB]
-Get:28 http://deb.debian.org/debian buster/main amd64 libbinutils amd64 2.31.1-16 [478 kB]
-Get:29 http://deb.debian.org/debian buster/main amd64 binutils-x86-64-linux-gnu amd64 2.31.1-16 [1823 kB]
-Get:30 http://deb.debian.org/debian buster/main amd64 binutils amd64 2.31.1-16 [56.8 kB]
-Get:31 http://deb.debian.org/debian buster/main amd64 libc-dev-bin amd64 2.28-10 [275 kB]
-Get:32 http://deb.debian.org/debian buster/main amd64 linux-libc-dev amd64 4.19.132-1 [1376 kB]
-Get:33 http://deb.debian.org/debian buster/main amd64 libc6-dev amd64 2.28-10 [2691 kB]
-Get:34 http://deb.debian.org/debian buster/main amd64 libisl19 amd64 0.20-2 [587 kB]
-Get:35 http://deb.debian.org/debian buster/main amd64 libmpfr6 amd64 4.0.2-1 [775 kB]
-Get:36 http://deb.debian.org/debian buster/main amd64 libmpc3 amd64 1.1.0-1 [41.3 kB]
-Get:37 http://deb.debian.org/debian buster/main amd64 cpp-8 amd64 8.3.0-6 [8914 kB]
-Get:38 http://deb.debian.org/debian buster/main amd64 cpp amd64 4:8.3.0-1 [19.4 kB]
-Get:39 http://deb.debian.org/debian buster/main amd64 libcc1-0 amd64 8.3.0-6 [46.6 kB]
-Get:40 http://deb.debian.org/debian buster/main amd64 libgomp1 amd64 8.3.0-6 [75.8 kB]
-Get:41 http://deb.debian.org/debian buster/main amd64 libitm1 amd64 8.3.0-6 [27.7 kB]
-Get:42 http://deb.debian.org/debian buster/main amd64 libatomic1 amd64 8.3.0-6 [9032 B]
-Get:43 http://deb.debian.org/debian buster/main amd64 libasan5 amd64 8.3.0-6 [362 kB]
-Get:44 http://deb.debian.org/debian buster/main amd64 liblsan0 amd64 8.3.0-6 [131 kB]
-Get:45 http://deb.debian.org/debian buster/main amd64 libtsan0 amd64 8.3.0-6 [283 kB]
-Get:46 http://deb.debian.org/debian buster/main amd64 libubsan1 amd64 8.3.0-6 [120 kB]
-Get:47 http://deb.debian.org/debian buster/main amd64 libmpx2 amd64 8.3.0-6 [11.4 kB]
-Get:48 http://deb.debian.org/debian buster/main amd64 libquadmath0 amd64 8.3.0-6 [133 kB]
-Get:49 http://deb.debian.org/debian buster/main amd64 libgcc-8-dev amd64 8.3.0-6 [2298 kB]
-Get:50 http://deb.debian.org/debian buster/main amd64 gcc-8 amd64 8.3.0-6 [9452 kB]
-Get:51 http://deb.debian.org/debian buster/main amd64 gcc amd64 4:8.3.0-1 [5196 B]
-Get:52 http://deb.debian.org/debian buster/main amd64 libstdc++-8-dev amd64 8.3.0-6 [1532 kB]
-Get:53 http://deb.debian.org/debian buster/main amd64 g++-8 amd64 8.3.0-6 [9752 kB]
-Get:54 http://deb.debian.org/debian buster/main amd64 g++ amd64 4:8.3.0-1 [1644 B]
-Get:55 http://deb.debian.org/debian buster/main amd64 make amd64 4.2.1-1.2 [341 kB]
-Get:56 http://deb.debian.org/debian buster/main amd64 libdpkg-perl all 1.19.7 [1414 kB]
-Get:57 http://deb.debian.org/debian buster/main amd64 patch amd64 2.7.6-3+deb10u1 [126 kB]
-Get:58 http://deb.debian.org/debian buster/main amd64 dpkg-dev all 1.19.7 [1773 kB]
-Get:59 http://deb.debian.org/debian buster/main amd64 build-essential amd64 12.6 [7576 B]
-Get:60 http://deb.debian.org/debian buster/main amd64 openssl amd64 1.1.1d-0+deb10u3 [844 kB]
-Get:61 http://deb.debian.org/debian buster-updates/main amd64 ca-certificates all 20200601~deb10u1 [158 kB]
-Get:62 http://deb.debian.org/debian buster/main amd64 libfakeroot amd64 1.23-1 [45.9 kB]
-Get:63 http://deb.debian.org/debian buster/main amd64 fakeroot amd64 1.23-1 [85.8 kB]
-Get:64 http://deb.debian.org/debian buster/main amd64 libassuan0 amd64 2.5.2-1 [49.4 kB]
-Get:65 http://deb.debian.org/debian buster/main amd64 gpgconf amd64 2.2.12-1+deb10u1 [510 kB]
-Get:66 http://deb.debian.org/debian buster/main amd64 lsb-base all 10.2019051400 [28.4 kB]
-Get:67 http://deb.debian.org/debian buster/main amd64 libksba8 amd64 1.3.5-2 [99.7 kB]
-Get:68 http://deb.debian.org/debian buster/main amd64 libsasl2-modules-db amd64 2.1.27+dfsg-1+deb10u1 [69.1 kB]
-Get:69 http://deb.debian.org/debian buster/main amd64 libsasl2-2 amd64 2.1.27+dfsg-1+deb10u1 [106 kB]
-Get:70 http://deb.debian.org/debian buster/main amd64 libldap-common all 2.4.47+dfsg-3+deb10u2 [89.7 kB]
-Get:71 http://deb.debian.org/debian buster/main amd64 libldap-2.4-2 amd64 2.4.47+dfsg-3+deb10u2 [224 kB]
-Get:72 http://deb.debian.org/debian buster/main amd64 libnpth0 amd64 1.6-1 [18.4 kB]
-Get:73 http://deb.debian.org/debian buster/main amd64 dirmngr amd64 2.2.12-1+deb10u1 [712 kB]
-Get:74 http://deb.debian.org/debian buster/main amd64 gnupg-l10n all 2.2.12-1+deb10u1 [1010 kB]
-Get:75 http://deb.debian.org/debian buster/main amd64 gnupg-utils amd64 2.2.12-1+deb10u1 [861 kB]
-Get:76 http://deb.debian.org/debian buster/main amd64 gpg amd64 2.2.12-1+deb10u1 [865 kB]
-Get:77 http://deb.debian.org/debian buster/main amd64 pinentry-curses amd64 1.1.0-2 [64.5 kB]
-Get:78 http://deb.debian.org/debian buster/main amd64 gpg-agent amd64 2.2.12-1+deb10u1 [617 kB]
-Get:79 http://deb.debian.org/debian buster/main amd64 gpg-wks-client amd64 2.2.12-1+deb10u1 [485 kB]
-Get:80 http://deb.debian.org/debian buster/main amd64 gpg-wks-server amd64 2.2.12-1+deb10u1 [478 kB]
-Get:81 http://deb.debian.org/debian buster/main amd64 gpgsm amd64 2.2.12-1+deb10u1 [604 kB]
-Get:82 http://deb.debian.org/debian buster/main amd64 gnupg all 2.2.12-1+deb10u1 [715 kB]
-Get:83 http://deb.debian.org/debian buster/main amd64 libfile-which-perl all 1.23-1 [16.6 kB]
-Get:84 http://deb.debian.org/debian buster/main amd64 libfile-homedir-perl all 1.004-1 [42.7 kB]
-Get:85 http://deb.debian.org/debian buster/main amd64 libio-pty-perl amd64 1:1.08-1.1+b5 [33.7 kB]
-Get:86 http://deb.debian.org/debian buster/main amd64 libipc-run-perl all 20180523.0-1 [101 kB]
-Get:87 http://deb.debian.org/debian buster/main amd64 libclass-method-modifiers-perl all 2.12-1 [18.6 kB]
-Get:88 http://deb.debian.org/debian buster/main amd64 libsub-exporter-progressive-perl all 0.001013-1 [7588 B]
-Get:89 http://deb.debian.org/debian buster/main amd64 libdevel-globaldestruction-perl all 0.14-1 [8084 B]
-Get:90 http://deb.debian.org/debian buster/main amd64 libb-hooks-op-check-perl amd64 0.22-1+b1 [11.4 kB]
-Get:91 http://deb.debian.org/debian buster/main amd64 libdynaloader-functions-perl all 0.003-1 [12.6 kB]
-Get:92 http://deb.debian.org/debian buster/main amd64 libdevel-callchecker-perl amd64 0.008-1 [15.7 kB]
-Get:93 http://deb.debian.org/debian buster/main amd64 libparams-classify-perl amd64 0.015-1+b1 [25.5 kB]
-Get:94 http://deb.debian.org/debian buster/main amd64 libmodule-runtime-perl all 0.016-1 [19.4 kB]
-Get:95 http://deb.debian.org/debian buster/main amd64 libimport-into-perl all 1.002005-1 [11.6 kB]
-Get:96 http://deb.debian.org/debian buster/main amd64 librole-tiny-perl all 2.000006-1 [19.4 kB]
-Get:97 http://deb.debian.org/debian buster/main amd64 libstrictures-perl all 2.000005-1 [18.3 kB]
-Get:98 http://deb.debian.org/debian buster/main amd64 libsub-quote-perl all 2.005001-1 [17.9 kB]
-Get:99 http://deb.debian.org/debian buster/main amd64 libmoo-perl all 2.003004-2 [57.4 kB]
-Get:100 http://deb.debian.org/debian buster/main amd64 libencode-locale-perl all 1.05-1 [13.7 kB]
-Get:101 http://deb.debian.org/debian buster/main amd64 libtimedate-perl all 2.3000-2+deb10u1 [38.1 kB]
-Get:102 http://deb.debian.org/debian buster/main amd64 libhttp-date-perl all 6.02-1 [10.7 kB]
-Get:103 http://deb.debian.org/debian buster/main amd64 libfile-listing-perl all 6.04-1 [10.3 kB]
-Get:104 http://deb.debian.org/debian buster/main amd64 libhtml-tagset-perl all 3.20-3 [12.7 kB]
-Get:105 http://deb.debian.org/debian buster/main amd64 liburi-perl all 1.76-1 [89.9 kB]
-Get:106 http://deb.debian.org/debian buster/main amd64 libhtml-parser-perl amd64 3.72-3+b3 [105 kB]
-Get:107 http://deb.debian.org/debian buster/main amd64 libhtml-tree-perl all 5.07-2 [213 kB]
-Get:108 http://deb.debian.org/debian buster/main amd64 libio-html-perl all 1.001-1 [17.6 kB]
-Get:109 http://deb.debian.org/debian buster/main amd64 liblwp-mediatypes-perl all 6.02-1 [22.1 kB]
-Get:110 http://deb.debian.org/debian buster/main amd64 libhttp-message-perl all 6.18-1 [77.8 kB]
-Get:111 http://deb.debian.org/debian buster/main amd64 libhttp-cookies-perl all 6.04-1 [17.8 kB]
-Get:112 http://deb.debian.org/debian buster/main amd64 libhttp-negotiate-perl all 6.01-1 [12.8 kB]
-Get:113 http://deb.debian.org/debian buster/main amd64 perl-openssl-defaults amd64 3 [6782 B]
-Get:114 http://deb.debian.org/debian buster/main amd64 libnet-ssleay-perl amd64 1.85-2+b1 [308 kB]
-Get:115 http://deb.debian.org/debian buster/main amd64 libio-socket-ssl-perl all 2.060-3 [207 kB]
-Get:116 http://deb.debian.org/debian buster/main amd64 libnet-http-perl all 6.18-1 [24.5 kB]
-Get:117 http://deb.debian.org/debian buster/main amd64 liblwp-protocol-https-perl all 6.07-2 [9242 B]
-Get:118 http://deb.debian.org/debian buster/main amd64 libtry-tiny-perl all 0.30-1 [23.3 kB]
-Get:119 http://deb.debian.org/debian buster/main amd64 libwww-robotrules-perl all 6.02-1 [12.9 kB]
-Get:120 http://deb.debian.org/debian buster/main amd64 libwww-perl all 6.36-2 [188 kB]
-Get:121 http://deb.debian.org/debian buster/main amd64 patchutils amd64 0.3.4-2 [90.4 kB]
-Get:122 http://deb.debian.org/debian buster/main amd64 wdiff amd64 1.2.2-2+b1 [122 kB]
-Get:123 http://deb.debian.org/debian buster/main amd64 devscripts amd64 2.19.5+deb10u1 [1046 kB]
-Get:124 http://deb.debian.org/debian buster/main amd64 libkeyutils1 amd64 1.6-6 [15.0 kB]
-Get:125 http://deb.debian.org/debian buster/main amd64 libkrb5support0 amd64 1.17-3 [65.6 kB]
-Get:126 http://deb.debian.org/debian buster/main amd64 libk5crypto3 amd64 1.17-3 [121 kB]
-Get:127 http://deb.debian.org/debian buster/main amd64 libkrb5-3 amd64 1.17-3 [370 kB]
-Get:128 http://deb.debian.org/debian buster/main amd64 libgssapi-krb5-2 amd64 1.17-3 [158 kB]
-Get:129 http://deb.debian.org/debian buster/main amd64 libnghttp2-14 amd64 1.36.0-2+deb10u1 [85.0 kB]
-Get:130 http://deb.debian.org/debian buster/main amd64 libpsl5 amd64 0.20.2-2 [53.7 kB]
-Get:131 http://deb.debian.org/debian buster/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2 [60.5 kB]
-Get:132 http://deb.debian.org/debian buster/main amd64 libssh2-1 amd64 1.8.0-2.1 [140 kB]
-Get:133 http://deb.debian.org/debian buster/main amd64 libcurl3-gnutls amd64 7.64.0-4+deb10u1 [330 kB]
-Get:134 http://deb.debian.org/debian buster/main amd64 libpcre2-8-0 amd64 10.32-5 [213 kB]
-Get:135 http://deb.debian.org/debian buster/main amd64 liberror-perl all 0.17027-2 [30.9 kB]
-Get:136 http://deb.debian.org/debian buster/main amd64 git-man all 1:2.20.1-2+deb10u3 [1620 kB]
-Get:137 http://deb.debian.org/debian buster/main amd64 git amd64 1:2.20.1-2+deb10u3 [5633 kB]
+Get:1 http://mirrors.163.com/debian buster/main amd64 perl-modules-5.28 all 5.28.1-6+deb10u1 [2873 kB]
+Get:2 http://mirrors.163.com/debian buster/main amd64 libgdbm6 amd64 1.18.1-4 [64.7 kB]
+Get:3 http://mirrors.163.com/debian buster/main amd64 libgdbm-compat4 amd64 1.18.1-4 [44.1 kB]
+Get:4 http://mirrors.163.com/debian buster/main amd64 libperl5.28 amd64 5.28.1-6+deb10u1 [3894 kB]
+Get:5 http://mirrors.163.com/debian buster/main amd64 perl amd64 5.28.1-6+deb10u1 [204 kB]
+Get:6 http://mirrors.163.com/debian buster/main amd64 libssl1.1 amd64 1.1.1d-0+deb10u3 [1538 kB]
+Get:7 http://mirrors.163.com/debian buster/main amd64 libpython3.7-minimal amd64 3.7.3-2+deb10u2 [589 kB]
+Get:8 http://mirrors.163.com/debian buster/main amd64 libexpat1 amd64 2.2.6-2+deb10u1 [106 kB]
+Get:9 http://mirrors.163.com/debian buster/main amd64 python3.7-minimal amd64 3.7.3-2+deb10u2 [1731 kB]
+Get:10 http://mirrors.163.com/debian buster/main amd64 python3-minimal amd64 3.7.3-1 [36.6 kB]
+Get:11 http://mirrors.163.com/debian buster/main amd64 mime-support all 3.62 [37.2 kB]
+Get:12 http://mirrors.163.com/debian buster/main amd64 libmpdec2 amd64 2.4.2-2 [87.2 kB]
+Get:13 http://mirrors.163.com/debian buster/main amd64 readline-common all 7.0-5 [70.6 kB]
+Get:14 http://mirrors.163.com/debian buster/main amd64 libreadline7 amd64 7.0-5 [151 kB]
+Get:15 http://mirrors.163.com/debian buster/main amd64 libsqlite3-0 amd64 3.27.2-3 [641 kB]
+Get:16 http://mirrors.163.com/debian buster/main amd64 libpython3.7-stdlib amd64 3.7.3-2+deb10u2 [1732 kB]
+Get:17 http://mirrors.163.com/debian buster/main amd64 python3.7 amd64 3.7.3-2+deb10u2 [330 kB]
+Get:18 http://mirrors.163.com/debian buster/main amd64 libpython3-stdlib amd64 3.7.3-1 [20.0 kB]
+Get:19 http://mirrors.163.com/debian buster/main amd64 python3 amd64 3.7.3-1 [61.5 kB]
+Get:20 http://mirrors.163.com/debian buster/main amd64 netbase all 5.6 [19.4 kB]
+Get:21 http://mirrors.163.com/debian buster/main amd64 sensible-utils all 0.0.12 [15.8 kB]
+Get:22 http://mirrors.163.com/debian buster/main amd64 bzip2 amd64 1.0.6-9.2~deb10u1 [48.4 kB]
+Get:23 http://mirrors.163.com/debian buster/main amd64 libmagic-mgc amd64 1:5.35-4+deb10u1 [242 kB]
+Get:24 http://mirrors.163.com/debian buster/main amd64 libmagic1 amd64 1:5.35-4+deb10u1 [117 kB]
+Get:25 http://mirrors.163.com/debian buster/main amd64 file amd64 1:5.35-4+deb10u1 [66.4 kB]
+Get:26 http://mirrors.163.com/debian buster/main amd64 xz-utils amd64 5.2.4-1 [183 kB]
+Get:27 http://mirrors.163.com/debian buster/main amd64 binutils-common amd64 2.31.1-16 [2073 kB]
+Get:28 http://mirrors.163.com/debian buster/main amd64 libbinutils amd64 2.31.1-16 [478 kB]
+Get:29 http://mirrors.163.com/debian buster/main amd64 binutils-x86-64-linux-gnu amd64 2.31.1-16 [1823 kB]
+Get:30 http://mirrors.163.com/debian buster/main amd64 binutils amd64 2.31.1-16 [56.8 kB]
+Get:31 http://mirrors.163.com/debian buster/main amd64 libc-dev-bin amd64 2.28-10 [275 kB]
+Get:32 http://mirrors.163.com/debian buster/main amd64 linux-libc-dev amd64 4.19.146-1 [1394 kB]
+Get:33 http://mirrors.163.com/debian buster/main amd64 libc6-dev amd64 2.28-10 [2691 kB]
+Get:34 http://mirrors.163.com/debian buster/main amd64 libisl19 amd64 0.20-2 [587 kB]
+Get:35 http://mirrors.163.com/debian buster/main amd64 libmpfr6 amd64 4.0.2-1 [775 kB]
+Get:36 http://mirrors.163.com/debian buster/main amd64 libmpc3 amd64 1.1.0-1 [41.3 kB]
+Get:37 http://mirrors.163.com/debian buster/main amd64 cpp-8 amd64 8.3.0-6 [8914 kB]
+Get:38 http://mirrors.163.com/debian buster/main amd64 cpp amd64 4:8.3.0-1 [19.4 kB]
+Get:39 http://mirrors.163.com/debian buster/main amd64 libcc1-0 amd64 8.3.0-6 [46.6 kB]
+Get:40 http://mirrors.163.com/debian buster/main amd64 libgomp1 amd64 8.3.0-6 [75.8 kB]
+Get:41 http://mirrors.163.com/debian buster/main amd64 libitm1 amd64 8.3.0-6 [27.7 kB]
+Get:42 http://mirrors.163.com/debian buster/main amd64 libatomic1 amd64 8.3.0-6 [9032 B]
+Get:43 http://mirrors.163.com/debian buster/main amd64 libasan5 amd64 8.3.0-6 [362 kB]
+Get:44 http://mirrors.163.com/debian buster/main amd64 liblsan0 amd64 8.3.0-6 [131 kB]
+Get:45 http://mirrors.163.com/debian buster/main amd64 libtsan0 amd64 8.3.0-6 [283 kB]
+Get:46 http://mirrors.163.com/debian buster/main amd64 libubsan1 amd64 8.3.0-6 [120 kB]
+Get:47 http://mirrors.163.com/debian buster/main amd64 libmpx2 amd64 8.3.0-6 [11.4 kB]
+Get:48 http://mirrors.163.com/debian buster/main amd64 libquadmath0 amd64 8.3.0-6 [133 kB]
+Get:49 http://mirrors.163.com/debian buster/main amd64 libgcc-8-dev amd64 8.3.0-6 [2298 kB]
+Get:50 http://mirrors.163.com/debian buster/main amd64 gcc-8 amd64 8.3.0-6 [9452 kB]
+Get:51 http://mirrors.163.com/debian buster/main amd64 gcc amd64 4:8.3.0-1 [5196 B]
+Get:52 http://mirrors.163.com/debian buster/main amd64 libstdc++-8-dev amd64 8.3.0-6 [1532 kB]
+Get:53 http://mirrors.163.com/debian buster/main amd64 g++-8 amd64 8.3.0-6 [9752 kB]
+Get:54 http://mirrors.163.com/debian buster/main amd64 g++ amd64 4:8.3.0-1 [1644 B]
+Get:55 http://mirrors.163.com/debian buster/main amd64 make amd64 4.2.1-1.2 [341 kB]
+Get:56 http://mirrors.163.com/debian buster/main amd64 libdpkg-perl all 1.19.7 [1414 kB]
+Get:57 http://mirrors.163.com/debian buster/main amd64 patch amd64 2.7.6-3+deb10u1 [126 kB]
+Get:58 http://mirrors.163.com/debian buster/main amd64 dpkg-dev all 1.19.7 [1773 kB]
+Get:59 http://mirrors.163.com/debian buster/main amd64 build-essential amd64 12.6 [7576 B]
+Get:60 http://mirrors.163.com/debian buster/main amd64 openssl amd64 1.1.1d-0+deb10u3 [844 kB]
+Get:61 http://mirrors.163.com/debian buster/main amd64 ca-certificates all 20190110 [157 kB]
+Get:62 http://mirrors.163.com/debian buster/main amd64 libfakeroot amd64 1.23-1 [45.9 kB]
+Get:63 http://mirrors.163.com/debian buster/main amd64 fakeroot amd64 1.23-1 [85.8 kB]
+Get:64 http://mirrors.163.com/debian buster/main amd64 libassuan0 amd64 2.5.2-1 [49.4 kB]
+Get:65 http://mirrors.163.com/debian buster/main amd64 gpgconf amd64 2.2.12-1+deb10u1 [510 kB]
+Get:66 http://mirrors.163.com/debian buster/main amd64 lsb-base all 10.2019051400 [28.4 kB]
+Get:67 http://mirrors.163.com/debian buster/main amd64 libksba8 amd64 1.3.5-2 [99.7 kB]
+Get:68 http://mirrors.163.com/debian buster/main amd64 libsasl2-modules-db amd64 2.1.27+dfsg-1+deb10u1 [69.1 kB]
+Get:69 http://mirrors.163.com/debian buster/main amd64 libsasl2-2 amd64 2.1.27+dfsg-1+deb10u1 [106 kB]
+Get:70 http://mirrors.163.com/debian buster/main amd64 libldap-common all 2.4.47+dfsg-3+deb10u2 [89.7 kB]
+Get:71 http://mirrors.163.com/debian buster/main amd64 libldap-2.4-2 amd64 2.4.47+dfsg-3+deb10u2 [224 kB]
+Get:72 http://mirrors.163.com/debian buster/main amd64 libnpth0 amd64 1.6-1 [18.4 kB]
+Get:73 http://mirrors.163.com/debian buster/main amd64 dirmngr amd64 2.2.12-1+deb10u1 [712 kB]
+Get:74 http://mirrors.163.com/debian buster/main amd64 gnupg-l10n all 2.2.12-1+deb10u1 [1010 kB]
+Get:75 http://mirrors.163.com/debian buster/main amd64 gnupg-utils amd64 2.2.12-1+deb10u1 [861 kB]
+Get:76 http://mirrors.163.com/debian buster/main amd64 gpg amd64 2.2.12-1+deb10u1 [865 kB]
+Get:77 http://mirrors.163.com/debian buster/main amd64 pinentry-curses amd64 1.1.0-2 [64.5 kB]
+Get:78 http://mirrors.163.com/debian buster/main amd64 gpg-agent amd64 2.2.12-1+deb10u1 [617 kB]
+Get:79 http://mirrors.163.com/debian buster/main amd64 gpg-wks-client amd64 2.2.12-1+deb10u1 [485 kB]
+Get:80 http://mirrors.163.com/debian buster/main amd64 gpg-wks-server amd64 2.2.12-1+deb10u1 [478 kB]
+Get:81 http://mirrors.163.com/debian buster/main amd64 gpgsm amd64 2.2.12-1+deb10u1 [604 kB]
+Get:82 http://mirrors.163.com/debian buster/main amd64 gnupg all 2.2.12-1+deb10u1 [715 kB]
+Get:83 http://mirrors.163.com/debian buster/main amd64 libfile-which-perl all 1.23-1 [16.6 kB]
+Get:84 http://mirrors.163.com/debian buster/main amd64 libfile-homedir-perl all 1.004-1 [42.7 kB]
+Get:85 http://mirrors.163.com/debian buster/main amd64 libio-pty-perl amd64 1:1.08-1.1+b5 [33.7 kB]
+Get:86 http://mirrors.163.com/debian buster/main amd64 libipc-run-perl all 20180523.0-1 [101 kB]
+Get:87 http://mirrors.163.com/debian buster/main amd64 libclass-method-modifiers-perl all 2.12-1 [18.6 kB]
+Get:88 http://mirrors.163.com/debian buster/main amd64 libsub-exporter-progressive-perl all 0.001013-1 [7588 B]
+Get:89 http://mirrors.163.com/debian buster/main amd64 libdevel-globaldestruction-perl all 0.14-1 [8084 B]
+Get:90 http://mirrors.163.com/debian buster/main amd64 libb-hooks-op-check-perl amd64 0.22-1+b1 [11.4 kB]
+Get:91 http://mirrors.163.com/debian buster/main amd64 libdynaloader-functions-perl all 0.003-1 [12.6 kB]
+Get:92 http://mirrors.163.com/debian buster/main amd64 libdevel-callchecker-perl amd64 0.008-1 [15.7 kB]
+Get:93 http://mirrors.163.com/debian buster/main amd64 libparams-classify-perl amd64 0.015-1+b1 [25.5 kB]
+Get:94 http://mirrors.163.com/debian buster/main amd64 libmodule-runtime-perl all 0.016-1 [19.4 kB]
+Get:95 http://mirrors.163.com/debian buster/main amd64 libimport-into-perl all 1.002005-1 [11.6 kB]
+Get:96 http://mirrors.163.com/debian buster/main amd64 librole-tiny-perl all 2.000006-1 [19.4 kB]
+Get:97 http://mirrors.163.com/debian buster/main amd64 libstrictures-perl all 2.000005-1 [18.3 kB]
+Get:98 http://mirrors.163.com/debian buster/main amd64 libsub-quote-perl all 2.005001-1 [17.9 kB]
+Get:99 http://mirrors.163.com/debian buster/main amd64 libmoo-perl all 2.003004-2 [57.4 kB]
+Get:100 http://mirrors.163.com/debian buster/main amd64 libencode-locale-perl all 1.05-1 [13.7 kB]
+Get:101 http://mirrors.163.com/debian buster/main amd64 libtimedate-perl all 2.3000-2+deb10u1 [38.1 kB]
+Get:102 http://mirrors.163.com/debian buster/main amd64 libhttp-date-perl all 6.02-1 [10.7 kB]
+Get:103 http://mirrors.163.com/debian buster/main amd64 libfile-listing-perl all 6.04-1 [10.3 kB]
+Get:104 http://mirrors.163.com/debian buster/main amd64 libhtml-tagset-perl all 3.20-3 [12.7 kB]
+Get:105 http://mirrors.163.com/debian buster/main amd64 liburi-perl all 1.76-1 [89.9 kB]
+Get:106 http://mirrors.163.com/debian buster/main amd64 libhtml-parser-perl amd64 3.72-3+b3 [105 kB]
+Get:107 http://mirrors.163.com/debian buster/main amd64 libhtml-tree-perl all 5.07-2 [213 kB]
+Get:108 http://mirrors.163.com/debian buster/main amd64 libio-html-perl all 1.001-1 [17.6 kB]
+Get:109 http://mirrors.163.com/debian buster/main amd64 liblwp-mediatypes-perl all 6.02-1 [22.1 kB]
+Get:110 http://mirrors.163.com/debian buster/main amd64 libhttp-message-perl all 6.18-1 [77.8 kB]
+Get:111 http://mirrors.163.com/debian buster/main amd64 libhttp-cookies-perl all 6.04-1 [17.8 kB]
+Get:112 http://mirrors.163.com/debian buster/main amd64 libhttp-negotiate-perl all 6.01-1 [12.8 kB]
+Get:113 http://mirrors.163.com/debian buster/main amd64 perl-openssl-defaults amd64 3 [6782 B]
+Get:114 http://mirrors.163.com/debian buster/main amd64 libnet-ssleay-perl amd64 1.85-2+b1 [308 kB]
+Get:115 http://mirrors.163.com/debian buster/main amd64 libio-socket-ssl-perl all 2.060-3 [207 kB]
+Get:116 http://mirrors.163.com/debian buster/main amd64 libnet-http-perl all 6.18-1 [24.5 kB]
+Get:117 http://mirrors.163.com/debian buster/main amd64 liblwp-protocol-https-perl all 6.07-2 [9242 B]
+Get:118 http://mirrors.163.com/debian buster/main amd64 libtry-tiny-perl all 0.30-1 [23.3 kB]
+Get:119 http://mirrors.163.com/debian buster/main amd64 libwww-robotrules-perl all 6.02-1 [12.9 kB]
+Get:120 http://mirrors.163.com/debian buster/main amd64 libwww-perl all 6.36-2 [188 kB]
+Get:121 http://mirrors.163.com/debian buster/main amd64 patchutils amd64 0.3.4-2 [90.4 kB]
+Get:122 http://mirrors.163.com/debian buster/main amd64 wdiff amd64 1.2.2-2+b1 [122 kB]
+Get:123 http://mirrors.163.com/debian buster/main amd64 devscripts amd64 2.19.5+deb10u1 [1046 kB]
+Get:124 http://mirrors.163.com/debian buster/main amd64 libkeyutils1 amd64 1.6-6 [15.0 kB]
+Get:125 http://mirrors.163.com/debian buster/main amd64 libkrb5support0 amd64 1.17-3 [65.6 kB]
+Get:126 http://mirrors.163.com/debian buster/main amd64 libk5crypto3 amd64 1.17-3 [121 kB]
+Get:127 http://mirrors.163.com/debian buster/main amd64 libkrb5-3 amd64 1.17-3 [370 kB]
+Get:128 http://mirrors.163.com/debian buster/main amd64 libgssapi-krb5-2 amd64 1.17-3 [158 kB]
+Get:129 http://mirrors.163.com/debian buster/main amd64 libnghttp2-14 amd64 1.36.0-2+deb10u1 [85.0 kB]
+Get:130 http://mirrors.163.com/debian buster/main amd64 libpsl5 amd64 0.20.2-2 [53.7 kB]
+Get:131 http://mirrors.163.com/debian buster/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2 [60.5 kB]
+Get:132 http://mirrors.163.com/debian buster/main amd64 libssh2-1 amd64 1.8.0-2.1 [140 kB]
+Get:133 http://mirrors.163.com/debian buster/main amd64 libcurl3-gnutls amd64 7.64.0-4+deb10u1 [330 kB]
+Get:134 http://mirrors.163.com/debian buster/main amd64 libpcre2-8-0 amd64 10.32-5 [213 kB]
+Get:135 http://mirrors.163.com/debian buster/main amd64 liberror-perl all 0.17027-2 [30.9 kB]
+Get:136 http://mirrors.163.com/debian buster/main amd64 git-man all 1:2.20.1-2+deb10u3 [1620 kB]
+Get:137 http://mirrors.163.com/debian buster/main amd64 git amd64 1:2.20.1-2+deb10u3 [5633 kB]
 [91mdebconf: delaying package configuration, since apt-utils is not installed
-[0mFetched 82.7 MB in 8s (10.6 MB/s)
+[0mFetched 82.7 MB in 7s (11.9 MB/s)
 Selecting previously unselected package perl-modules-5.28.
 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6677 files and directories currently installed.)
 Preparing to unpack .../0-perl-modules-5.28_5.28.1-6+deb10u1_all.deb ...
@@ -363,8 +365,8 @@ Selecting previously unselected package libc-dev-bin.
 Preparing to unpack .../012-libc-dev-bin_2.28-10_amd64.deb ...
 Unpacking libc-dev-bin (2.28-10) ...
 Selecting previously unselected package linux-libc-dev:amd64.
-Preparing to unpack .../013-linux-libc-dev_4.19.132-1_amd64.deb ...
-Unpacking linux-libc-dev:amd64 (4.19.132-1) ...
+Preparing to unpack .../013-linux-libc-dev_4.19.146-1_amd64.deb ...
+Unpacking linux-libc-dev:amd64 (4.19.146-1) ...
 Selecting previously unselected package libc6-dev:amd64.
 Preparing to unpack .../014-libc6-dev_2.28-10_amd64.deb ...
 Unpacking libc6-dev:amd64 (2.28-10) ...
@@ -450,8 +452,8 @@ Selecting previously unselected package openssl.
 Preparing to unpack .../041-openssl_1.1.1d-0+deb10u3_amd64.deb ...
 Unpacking openssl (1.1.1d-0+deb10u3) ...
 Selecting previously unselected package ca-certificates.
-Preparing to unpack .../042-ca-certificates_20200601~deb10u1_all.deb ...
-Unpacking ca-certificates (20200601~deb10u1) ...
+Preparing to unpack .../042-ca-certificates_20190110_all.deb ...
+Unpacking ca-certificates (20190110) ...
 Selecting previously unselected package libfakeroot:amd64.
 Preparing to unpack .../043-libfakeroot_1.23-1_amd64.deb ...
 Unpacking libfakeroot:amd64 (1.23-1) ...
@@ -693,7 +695,7 @@ Setting up binutils-common:amd64 (2.31.1-16) ...
 Setting up libnghttp2-14:amd64 (1.36.0-2+deb10u1) ...
 Setting up libmagic1:amd64 (1:5.35-4+deb10u1) ...
 Setting up perl-openssl-defaults:amd64 (3) ...
-Setting up linux-libc-dev:amd64 (4.19.132-1) ...
+Setting up linux-libc-dev:amd64 (4.19.146-1) ...
 Setting up libnpth0:amd64 (1.6-1) ...
 Setting up file (1:5.35-4+deb10u1) ...
 Setting up libassuan0:amd64 (2.5.2-1) ...
@@ -745,9 +747,9 @@ Setting up pinentry-curses (1.1.0-2) ...
 Setting up libpython3.7-stdlib:amd64 (3.7.3-2+deb10u2) ...
 Setting up libldap-2.4-2:amd64 (2.4.47+dfsg-3+deb10u2) ...
 Setting up binutils (2.31.1-16) ...
-Setting up ca-certificates (20200601~deb10u1) ...
+Setting up ca-certificates (20190110) ...
 Updating certificates in /etc/ssl/certs...
-126 added, 0 removed; done.
+128 added, 0 removed; done.
 Setting up libgssapi-krb5-2:amd64 (1.17-3) ...
 Setting up libgdbm-compat4:amd64 (1.18.1-4) ...
 Setting up libgcc-8-dev:amd64 (8.3.0-6) ...
@@ -818,15 +820,15 @@ Setting up libwww-perl (6.36-2) ...
 Setting up devscripts (2.19.5+deb10u1) ...
 Setting up liblwp-protocol-https-perl (6.07-2) ...
 Processing triggers for libc-bin (2.28-10) ...
-Processing triggers for ca-certificates (20200601~deb10u1) ...
+Processing triggers for ca-certificates (20190110) ...
 Updating certificates in /etc/ssl/certs...
 0 added, 0 removed; done.
 Running hooks in /etc/ca-certificates/update.d...
 done.
-Removing intermediate container 94ca9769b0c8
- ---> 71694399d282
-Step 6/19 : RUN apt-get build-dep -y shim
- ---> Running in 5245c1634d2f
+Removing intermediate container 62ccd98c70ee
+ ---> f644bbaef584
+Step 7/20 : RUN apt-get build-dep -y shim
+ ---> Running in 089f9ecfab8e
 Reading package lists...
 Building dependency tree...
 Reading state information...
@@ -842,60 +844,60 @@ The following NEW packages will be installed:
 0 upgraded, 50 newly installed, 0 to remove and 0 not upgraded.
 Need to get 43.3 MB of archives.
 After this operation, 147 MB of additional disk space will be used.
-Get:1 http://deb.debian.org/debian buster/main amd64 libbsd0 amd64 0.9.1-2 [99.5 kB]
-Get:2 http://deb.debian.org/debian buster/main amd64 bsdmainutils amd64 11.1.2+b1 [191 kB]
-Get:3 http://deb.debian.org/debian buster/main amd64 libuchardet0 amd64 0.0.6-3 [64.9 kB]
-Get:4 http://deb.debian.org/debian buster/main amd64 groff-base amd64 1.22.4-3 [916 kB]
-Get:5 http://deb.debian.org/debian buster/main amd64 libpipeline1 amd64 1.5.1-2 [31.2 kB]
-Get:6 http://deb.debian.org/debian buster/main amd64 man-db amd64 2.8.5-2 [1274 kB]
-Get:7 http://deb.debian.org/debian buster/main amd64 gettext-base amd64 0.19.8.1-9 [123 kB]
-Get:8 http://deb.debian.org/debian buster/main amd64 libsigsegv2 amd64 2.12-2 [32.8 kB]
-Get:9 http://deb.debian.org/debian buster/main amd64 m4 amd64 1.4.18-2 [203 kB]
-Get:10 http://deb.debian.org/debian buster/main amd64 autoconf all 2.69-11 [341 kB]
-Get:11 http://deb.debian.org/debian buster/main amd64 autotools-dev all 20180224.1 [77.0 kB]
-Get:12 http://deb.debian.org/debian buster/main amd64 automake all 1:1.16.1-4 [771 kB]
-Get:13 http://deb.debian.org/debian buster/main amd64 autopoint all 0.19.8.1-9 [434 kB]
-Get:14 http://deb.debian.org/debian buster/main amd64 libckyapplet1 amd64 1.1.0-13+b1 [24.3 kB]
-Get:15 http://deb.debian.org/debian buster/main amd64 libpcsclite1 amd64 1.8.24-1 [58.5 kB]
-Get:16 http://deb.debian.org/debian buster/main amd64 coolkey amd64 1.1.0-13+b1 [85.9 kB]
-Get:17 http://deb.debian.org/debian buster/main amd64 gcc-7-base amd64 7.4.0-6 [190 kB]
-Get:18 http://deb.debian.org/debian buster/main amd64 cpp-7 amd64 7.4.0-6 [8594 kB]
-Get:19 http://deb.debian.org/debian buster/main amd64 libasan4 amd64 7.4.0-6 [354 kB]
-Get:20 http://deb.debian.org/debian buster/main amd64 libubsan0 amd64 7.4.0-6 [124 kB]
-Get:21 http://deb.debian.org/debian buster/main amd64 libcilkrts5 amd64 7.4.0-6 [42.2 kB]
-Get:22 http://deb.debian.org/debian buster/main amd64 libgcc-7-dev amd64 7.4.0-6 [2369 kB]
-Get:23 http://deb.debian.org/debian buster/main amd64 gcc-7 amd64 7.4.0-6 [9058 kB]
-Get:24 http://deb.debian.org/debian buster/main amd64 libtool all 2.4.6-9 [547 kB]
-Get:25 http://deb.debian.org/debian buster/main amd64 dh-autoreconf all 19 [16.9 kB]
-Get:26 http://deb.debian.org/debian buster/main amd64 libarchive-zip-perl all 1.64-1 [96.8 kB]
-Get:27 http://deb.debian.org/debian buster/main amd64 libfile-stripnondeterminism-perl all 1.1.2-1 [19.8 kB]
-Get:28 http://deb.debian.org/debian buster/main amd64 dh-strip-nondeterminism all 1.1.2-1 [13.0 kB]
-Get:29 http://deb.debian.org/debian buster/main amd64 dwz amd64 0.12-3 [78.0 kB]
-Get:30 http://deb.debian.org/debian buster/main amd64 libglib2.0-0 amd64 2.58.3-2+deb10u2 [1258 kB]
-Get:31 http://deb.debian.org/debian buster/main amd64 libicu63 amd64 63.1-6+deb10u1 [8300 kB]
-Get:32 http://deb.debian.org/debian buster/main amd64 libxml2 amd64 2.9.4+dfsg1-7+b3 [687 kB]
-Get:33 http://deb.debian.org/debian buster/main amd64 libcroco3 amd64 0.6.12-3 [145 kB]
-Get:34 http://deb.debian.org/debian buster/main amd64 libncurses6 amd64 6.1+20181013-2+deb10u2 [102 kB]
-Get:35 http://deb.debian.org/debian buster/main amd64 gettext amd64 0.19.8.1-9 [1303 kB]
-Get:36 http://deb.debian.org/debian buster/main amd64 intltool-debian all 0.35.0+20060710.5 [26.8 kB]
-Get:37 http://deb.debian.org/debian buster/main amd64 po-debconf all 1.0.21 [248 kB]
-Get:38 http://deb.debian.org/debian buster/main amd64 debhelper all 12.1.1 [1016 kB]
-Get:39 http://deb.debian.org/debian buster/main amd64 gnu-efi amd64 3.0.9-1 [140 kB]
-Get:40 http://deb.debian.org/debian buster/main amd64 libefivar1 amd64 37-2 [46.3 kB]
-Get:41 http://deb.debian.org/debian buster/main amd64 zlib1g-dev amd64 1:1.2.11.dfsg-1 [214 kB]
-Get:42 http://deb.debian.org/debian buster/main amd64 libelf-dev amd64 0.176-1.1 [72.1 kB]
-Get:43 http://deb.debian.org/debian buster/main amd64 libnspr4 amd64 2:4.20-1 [112 kB]
-Get:44 http://deb.debian.org/debian buster/main amd64 libnss3 amd64 2:3.42.1-1+deb10u3 [1159 kB]
-Get:45 http://deb.debian.org/debian buster/main amd64 libnss3-tools amd64 2:3.42.1-1+deb10u3 [870 kB]
-Get:46 http://deb.debian.org/debian buster/main amd64 libpopt0 amd64 1.16-12 [49.4 kB]
-Get:47 http://deb.debian.org/debian buster/main amd64 opensc-pkcs11 amd64 0.19.0-1 [826 kB]
-Get:48 http://deb.debian.org/debian buster/main amd64 opensc amd64 0.19.0-1 [305 kB]
-Get:49 http://deb.debian.org/debian buster/main amd64 pesign amd64 0.112-5 [94.0 kB]
-Get:50 http://deb.debian.org/debian buster/main amd64 sbsigntool amd64 0.9.2-2 [63.5 kB]
+Get:1 http://mirrors.163.com/debian buster/main amd64 libbsd0 amd64 0.9.1-2 [99.5 kB]
+Get:2 http://mirrors.163.com/debian buster/main amd64 bsdmainutils amd64 11.1.2+b1 [191 kB]
+Get:3 http://mirrors.163.com/debian buster/main amd64 libuchardet0 amd64 0.0.6-3 [64.9 kB]
+Get:4 http://mirrors.163.com/debian buster/main amd64 groff-base amd64 1.22.4-3 [916 kB]
+Get:5 http://mirrors.163.com/debian buster/main amd64 libpipeline1 amd64 1.5.1-2 [31.2 kB]
+Get:6 http://mirrors.163.com/debian buster/main amd64 man-db amd64 2.8.5-2 [1274 kB]
+Get:7 http://mirrors.163.com/debian buster/main amd64 gettext-base amd64 0.19.8.1-9 [123 kB]
+Get:8 http://mirrors.163.com/debian buster/main amd64 libsigsegv2 amd64 2.12-2 [32.8 kB]
+Get:9 http://mirrors.163.com/debian buster/main amd64 m4 amd64 1.4.18-2 [203 kB]
+Get:10 http://mirrors.163.com/debian buster/main amd64 autoconf all 2.69-11 [341 kB]
+Get:11 http://mirrors.163.com/debian buster/main amd64 autotools-dev all 20180224.1 [77.0 kB]
+Get:12 http://mirrors.163.com/debian buster/main amd64 automake all 1:1.16.1-4 [771 kB]
+Get:13 http://mirrors.163.com/debian buster/main amd64 autopoint all 0.19.8.1-9 [434 kB]
+Get:14 http://mirrors.163.com/debian buster/main amd64 libckyapplet1 amd64 1.1.0-13+b1 [24.3 kB]
+Get:15 http://mirrors.163.com/debian buster/main amd64 libpcsclite1 amd64 1.8.24-1 [58.5 kB]
+Get:16 http://mirrors.163.com/debian buster/main amd64 coolkey amd64 1.1.0-13+b1 [85.9 kB]
+Get:17 http://mirrors.163.com/debian buster/main amd64 gcc-7-base amd64 7.4.0-6 [190 kB]
+Get:18 http://mirrors.163.com/debian buster/main amd64 cpp-7 amd64 7.4.0-6 [8594 kB]
+Get:19 http://mirrors.163.com/debian buster/main amd64 libasan4 amd64 7.4.0-6 [354 kB]
+Get:20 http://mirrors.163.com/debian buster/main amd64 libubsan0 amd64 7.4.0-6 [124 kB]
+Get:21 http://mirrors.163.com/debian buster/main amd64 libcilkrts5 amd64 7.4.0-6 [42.2 kB]
+Get:22 http://mirrors.163.com/debian buster/main amd64 libgcc-7-dev amd64 7.4.0-6 [2369 kB]
+Get:23 http://mirrors.163.com/debian buster/main amd64 gcc-7 amd64 7.4.0-6 [9058 kB]
+Get:24 http://mirrors.163.com/debian buster/main amd64 libtool all 2.4.6-9 [547 kB]
+Get:25 http://mirrors.163.com/debian buster/main amd64 dh-autoreconf all 19 [16.9 kB]
+Get:26 http://mirrors.163.com/debian buster/main amd64 libarchive-zip-perl all 1.64-1 [96.8 kB]
+Get:27 http://mirrors.163.com/debian buster/main amd64 libfile-stripnondeterminism-perl all 1.1.2-1 [19.8 kB]
+Get:28 http://mirrors.163.com/debian buster/main amd64 dh-strip-nondeterminism all 1.1.2-1 [13.0 kB]
+Get:29 http://mirrors.163.com/debian buster/main amd64 dwz amd64 0.12-3 [78.0 kB]
+Get:30 http://mirrors.163.com/debian buster/main amd64 libglib2.0-0 amd64 2.58.3-2+deb10u2 [1258 kB]
+Get:31 http://mirrors.163.com/debian buster/main amd64 libicu63 amd64 63.1-6+deb10u1 [8300 kB]
+Get:32 http://mirrors.163.com/debian buster/main amd64 libxml2 amd64 2.9.4+dfsg1-7+b3 [687 kB]
+Get:33 http://mirrors.163.com/debian buster/main amd64 libcroco3 amd64 0.6.12-3 [145 kB]
+Get:34 http://mirrors.163.com/debian buster/main amd64 libncurses6 amd64 6.1+20181013-2+deb10u2 [102 kB]
+Get:35 http://mirrors.163.com/debian buster/main amd64 gettext amd64 0.19.8.1-9 [1303 kB]
+Get:36 http://mirrors.163.com/debian buster/main amd64 intltool-debian all 0.35.0+20060710.5 [26.8 kB]
+Get:37 http://mirrors.163.com/debian buster/main amd64 po-debconf all 1.0.21 [248 kB]
+Get:38 http://mirrors.163.com/debian buster/main amd64 debhelper all 12.1.1 [1016 kB]
+Get:39 http://mirrors.163.com/debian buster/main amd64 gnu-efi amd64 3.0.9-1 [140 kB]
+Get:40 http://mirrors.163.com/debian buster/main amd64 libefivar1 amd64 37-2 [46.3 kB]
+Get:41 http://mirrors.163.com/debian buster/main amd64 zlib1g-dev amd64 1:1.2.11.dfsg-1 [214 kB]
+Get:42 http://mirrors.163.com/debian buster/main amd64 libelf-dev amd64 0.176-1.1 [72.1 kB]
+Get:43 http://mirrors.163.com/debian buster/main amd64 libnspr4 amd64 2:4.20-1 [112 kB]
+Get:44 http://mirrors.163.com/debian buster/main amd64 libnss3 amd64 2:3.42.1-1+deb10u3 [1159 kB]
+Get:45 http://mirrors.163.com/debian buster/main amd64 libnss3-tools amd64 2:3.42.1-1+deb10u3 [870 kB]
+Get:46 http://mirrors.163.com/debian buster/main amd64 libpopt0 amd64 1.16-12 [49.4 kB]
+Get:47 http://mirrors.163.com/debian buster/main amd64 opensc-pkcs11 amd64 0.19.0-1 [826 kB]
+Get:48 http://mirrors.163.com/debian buster/main amd64 opensc amd64 0.19.0-1 [305 kB]
+Get:49 http://mirrors.163.com/debian buster/main amd64 pesign amd64 0.112-5 [94.0 kB]
+Get:50 http://mirrors.163.com/debian buster/main amd64 sbsigntool amd64 0.9.2-2 [63.5 kB]
 [91mdebconf: delaying package configuration, since apt-utils is not installed
-[0mFetched 43.3 MB in 4s (10.6 MB/s)
+[0mFetched 43.3 MB in 7s (6160 kB/s)
 Selecting previously unselected package libbsd0:amd64.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 15897 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 15899 files and directories currently installed.)
 Preparing to unpack .../00-libbsd0_0.9.1-2_amd64.deb ...
 Unpacking libbsd0:amd64 (0.9.1-2) ...
 Selecting previously unselected package bsdmainutils.
@@ -1105,23 +1107,23 @@ Setting up dh-autoreconf (19) ...
 Setting up dh-strip-nondeterminism (1.1.2-1) ...
 Processing triggers for mime-support (3.62) ...
 Processing triggers for libc-bin (2.28-10) ...
-Removing intermediate container 5245c1634d2f
- ---> 4d4b3c43c133
-Step 7/19 : RUN git clone https://github.com/endlessm/shim.git shim-15+dev76.f60ba43-13
- ---> Running in 75c22294daa5
+Removing intermediate container 089f9ecfab8e
+ ---> f1f2aa889ced
+Step 8/20 : RUN git clone https://github.com/deepin-secureboot/shim.git shim-15+dev76.f60ba43-13
+ ---> Running in c778c818d361
 [91mCloning into 'shim-15+dev76.f60ba43-13'...
-[0mRemoving intermediate container 75c22294daa5
- ---> 0ebeda7c3276
-Step 8/19 : WORKDIR /shim-15+dev76.f60ba43-13
- ---> Running in 03126dcbfaee
-Removing intermediate container 03126dcbfaee
- ---> cf50d815faef
-Step 9/19 : RUN git config user.email "root@example.com"
- ---> Running in f87f32109698
-Removing intermediate container f87f32109698
- ---> dc1361fef8b5
-Step 10/19 : RUN git merge --allow-unrelated-histories -m "Import the packaging bits into master" origin/debian-master
- ---> Running in 891d2997d78f
+[0mRemoving intermediate container c778c818d361
+ ---> 58cb7edb9f25
+Step 9/20 : WORKDIR /shim-15+dev76.f60ba43-13
+ ---> Running in 9a56fef474f0
+Removing intermediate container 9a56fef474f0
+ ---> 31a6875a8b48
+Step 10/20 : RUN git config user.email "secureboot@deepin.com"
+ ---> Running in c84531d6b466
+Removing intermediate container c84531d6b466
+ ---> aa0cbe275155
+Step 11/20 : RUN git merge --allow-unrelated-histories -m "Import the packaging bits into master" origin/debian-master
+ ---> Running in a060a7b4c7dd
 Merge made by the 'recursive' strategy.
  debian/canonical-uefi-ca.der       | Bin 0 -> 1080 bytes
  debian/changelog                   | 305 +++++++++++++++++++++++++++++++++++++
@@ -1129,10 +1131,10 @@ Merge made by the 'recursive' strategy.
  debian/control                     |  31 ++++
  debian/copyright                   | 254 ++++++++++++++++++++++++++++++
  debian/debian-uefi-ca.der          | Bin 0 -> 930 bytes
+ debian/deepin-uefi-ca.der          | Bin 0 -> 1720 bytes
  debian/endless-dbx.hashes          |  17 +++
- debian/endless-uefi-ca.der         | Bin 0 -> 864 bytes
  debian/endless-uefi-dbx.esl        | Bin 0 -> 2507 bytes
- debian/rules                       |  53 +++++++
+ debian/rules                       |  52 +++++++
  debian/shim-efi-image.install      |   1 +
  debian/shim.install                |   4 +
  debian/source/format               |   1 +
@@ -1143,15 +1145,15 @@ Merge made by the 'recursive' strategy.
  debian/tests/control               |  29 ++++
  debian/tests/uefi_tests_base.py    | 241 +++++++++++++++++++++++++++++
  debian/watch                       |   5 +
- 20 files changed, 1139 insertions(+)
+ 20 files changed, 1138 insertions(+)
  create mode 100644 debian/canonical-uefi-ca.der
  create mode 100644 debian/changelog
  create mode 100644 debian/compat
  create mode 100644 debian/control
  create mode 100644 debian/copyright
  create mode 100644 debian/debian-uefi-ca.der
+ create mode 100644 debian/deepin-uefi-ca.der
  create mode 100644 debian/endless-dbx.hashes
- create mode 100644 debian/endless-uefi-ca.der
  create mode 100644 debian/endless-uefi-dbx.esl
  create mode 100755 debian/rules
  create mode 100644 debian/shim-efi-image.install
@@ -1164,18 +1166,18 @@ Merge made by the 'recursive' strategy.
  create mode 100644 debian/tests/control
  create mode 100644 debian/tests/uefi_tests_base.py
  create mode 100644 debian/watch
-Removing intermediate container 891d2997d78f
- ---> cb8e8a9fe027
-Step 11/19 : RUN echo "1.0" > debian/source/format
- ---> Running in 1f3008e76934
-Removing intermediate container 1f3008e76934
- ---> 93b22f0d5209
-Step 12/19 : RUN echo "--compression=gzip" > debian/source/options
- ---> Running in 84836c820e87
-Removing intermediate container 84836c820e87
- ---> 69e7f3fe0e65
-Step 13/19 : RUN dch -v 15+dev76.f60ba43-13 -D eos --force-distribution 'Automatic release from git (15+dev76.f60ba43-13)'
- ---> Running in 3991e50faada
+Removing intermediate container a060a7b4c7dd
+ ---> 3614a229f817
+Step 12/20 : RUN echo "1.0" > debian/source/format
+ ---> Running in 0ed9952b17d4
+Removing intermediate container 0ed9952b17d4
+ ---> 471b07d92590
+Step 13/20 : RUN echo "--compression=gzip" > debian/source/options
+ ---> Running in ac183078b3cd
+Removing intermediate container ac183078b3cd
+ ---> 24092cda0ffc
+Step 14/20 : RUN dch -v 15+dev76.f60ba43-13 -D eos --force-distribution 'Automatic release from git (15+dev76.f60ba43-13)'
+ ---> Running in 063e5b94b396
 [91mdch warning: Unable to determine Debian's backport distributions.
 dch warning: Recognised distributions are: 
 experimental, unstable, testing, stable, oldstable, oldoldstable,
@@ -1186,27 +1188,27 @@ experimental, unstable, testing, stable, oldstable, oldoldstable,
 Using your request anyway.
 [0mlibdistro-info-perl is not installed, Debian release names are not known.
 libdistro-info-perl is not installed, Ubuntu release names are not known.
-Removing intermediate container 3991e50faada
- ---> 6367f1a465b1
-Step 14/19 : RUN rm -rf .git
- ---> Running in dc24d874da15
-Removing intermediate container dc24d874da15
- ---> 1e59453a93e7
-Step 15/19 : RUN DEB_VENDOR=endless dpkg-buildpackage -us -uc
- ---> Running in 2bcb133f5bd8
+Removing intermediate container 063e5b94b396
+ ---> f9b733edeeb4
+Step 15/20 : RUN rm -rf .git
+ ---> Running in c8b57b0af737
+Removing intermediate container c8b57b0af737
+ ---> ee8b49116cd4
+Step 16/20 : RUN DEB_VENDOR=deepin dpkg-buildpackage -us -uc
+ ---> Running in a1bc166d7e41
 dpkg-buildpackage: info: source package shim
 dpkg-buildpackage: info: source version 15+dev76.f60ba43-13
 dpkg-buildpackage: info: source distribution eos
-dpkg-buildpackage: info: source changed by root <root@3991e50faada>
+dpkg-buildpackage: info: source changed by root <root@063e5b94b396>
+dpkg-buildpackage: info: host architecture amd64
 [91m dpkg-source --before-build .
-[0mdpkg-buildpackage: info: host architecture amd64
-dpkg-source: info: using options from shim-15+dev76.f60ba43-13/debian/source/options: --compression=gzip
+[0mdpkg-source: info: using options from shim-15+dev76.f60ba43-13/debian/source/options: --compression=gzip
 [91m debian/rules clean
 [0mdh clean --parallel
    debian/rules override_dh_auto_clean
 make[1]: Entering directory '/shim-15+dev76.f60ba43-13'
 dh_auto_clean -- MAKELEVEL=0
-	make -j8 clean MAKELEVEL=0
+	make -j4 clean MAKELEVEL=0
 make: Entering directory '/shim-15+dev76.f60ba43-13'
 make -C lib -f /shim-15+dev76.f60ba43-13/lib/Makefile clean
 make: Entering directory '/shim-15+dev76.f60ba43-13/lib'
@@ -1237,22 +1239,22 @@ dpkg-source: info: building shim in shim_15+dev76.f60ba43-13.dsc
    dh_auto_configure -O--parallel
    debian/rules override_dh_auto_build
 make[1]: Entering directory '/shim-15+dev76.f60ba43-13'
-dh_auto_build -- RELEASE=15 COMMIT_ID=a4a1fbe728c9545fc5647129df0cf1593b953bec MAKELEVEL=0 EFI_PATH=/usr/lib ENABLE_HTTPBOOT=true ENABLE_SBSIGN=1 VENDOR_CERT_FILE=debian/endless-uefi-ca.der EFIDIR=endless 
-	make -j8 RELEASE=15 COMMIT_ID=a4a1fbe728c9545fc5647129df0cf1593b953bec MAKELEVEL=0 EFI_PATH=/usr/lib ENABLE_HTTPBOOT=true ENABLE_SBSIGN=1 VENDOR_CERT_FILE=debian/endless-uefi-ca.der EFIDIR=endless
+dh_auto_build -- RELEASE=15 COMMIT_ID=a4a1fbe728c9545fc5647129df0cf1593b953bec MAKELEVEL=0 EFI_PATH=/usr/lib ENABLE_HTTPBOOT=true ENABLE_SBSIGN=1 VENDOR_CERT_FILE=debian/deepin-uefi-ca.der EFIDIR=deepin 
+	make -j4 RELEASE=15 COMMIT_ID=a4a1fbe728c9545fc5647129df0cf1593b953bec MAKELEVEL=0 EFI_PATH=/usr/lib ENABLE_HTTPBOOT=true ENABLE_SBSIGN=1 VENDOR_CERT_FILE=debian/deepin-uefi-ca.der EFIDIR=deepin
 make: Entering directory '/shim-15+dev76.f60ba43-13'
 sed	-e "s,@@VERSION@@,15," \
 	-e "s,@@UNAME@@,Linux x86_64 unknown unknown GNU/Linux," \
 	-e "s,@@COMMIT@@,a4a1fbe728c9545fc5647129df0cf1593b953bec," \
 	< /shim-15+dev76.f60ba43-13/version.c.in > version.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/endless-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o shim.o shim.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/endless-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o mok.o mok.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/endless-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o netboot.o netboot.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/endless-uefi-ca.der\" -c -o cert.o /shim-15+dev76.f60ba43-13/cert.S
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/endless-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o replacements.o replacements.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/endless-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o tpm.o tpm.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/endless-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o version.o version.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/endless-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o errlog.o errlog.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/endless-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o httpboot.o httpboot.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/deepin-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o shim.o shim.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/deepin-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o mok.o mok.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/deepin-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o netboot.o netboot.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/deepin-uefi-ca.der\" -c -o cert.o /shim-15+dev76.f60ba43-13/cert.S
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/deepin-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o replacements.o replacements.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/deepin-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o tpm.o tpm.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/deepin-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o version.o version.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/deepin-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o errlog.o errlog.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/deepin-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o httpboot.o httpboot.c
 for i in Hash Hmac Cipher Rand Pk Pem SysCall; do mkdir -p Cryptlib/$i; done
 make VPATH=/shim-15+dev76.f60ba43-13/Cryptlib TOPDIR=/shim-15+dev76.f60ba43-13/Cryptlib -C Cryptlib -f /shim-15+dev76.f60ba43-13/Cryptlib/Makefile
 make: Entering directory '/shim-15+dev76.f60ba43-13/Cryptlib'
@@ -1715,16 +1717,16 @@ gcc -ggdb -O0 -I/shim-15+dev76.f60ba43-13/Cryptlib/OpenSSL -I/shim-15+dev76.f60b
 ar rcs libopenssl.a crypto/bio/b_print.o crypto/aes/aes_cbc.o crypto/aes/aes_cfb.o crypto/aes/aes_core.o crypto/aes/aes_ecb.o crypto/aes/aes_ige.o crypto/aes/aes_misc.o crypto/aes/aes_ofb.o crypto/aes/aes_wrap.o crypto/asn1/a_bitstr.o crypto/asn1/a_d2i_fp.o crypto/asn1/a_digest.o crypto/asn1/a_dup.o crypto/asn1/a_gentm.o crypto/asn1/a_i2d_fp.o crypto/asn1/a_int.o crypto/asn1/a_mbstr.o crypto/asn1/a_object.o crypto/asn1/a_octet.o crypto/asn1/a_print.o crypto/asn1/a_sign.o crypto/asn1/a_strex.o crypto/asn1/a_strnid.o crypto/asn1/a_time.o crypto/asn1/a_type.o crypto/asn1/a_utctm.o crypto/asn1/a_utf8.o crypto/asn1/a_verify.o crypto/asn1/ameth_lib.o crypto/asn1/asn1_err.o crypto/asn1/asn1_gen.o crypto/asn1/asn1_lib.o crypto/asn1/asn1_par.o crypto/asn1/asn_mime.o crypto/asn1/asn_moid.o crypto/asn1/asn_mstbl.o crypto/asn1/asn_pack.o crypto/asn1/bio_asn1.o crypto/asn1/bio_ndef.o crypto/asn1/d2i_pr.o crypto/asn1/d2i_pu.o crypto/asn1/evp_asn1.o crypto/asn1/f_int.o crypto/asn1/f_string.o crypto/asn1/i2d_pr.o crypto/asn1/i2d_pu.o crypto/asn1/n_pkey.o crypto/asn1/nsseq.o crypto/asn1/p5_pbe.o crypto/asn1/p5_pbev2.o crypto/asn1/p5_scrypt.o crypto/asn1/p8_pkey.o crypto/asn1/t_bitst.o crypto/asn1/t_pkey.o crypto/asn1/t_spki.o crypto/asn1/tasn_dec.o crypto/asn1/tasn_enc.o crypto/asn1/tasn_fre.o crypto/asn1/tasn_new.o crypto/asn1/tasn_prn.o crypto/asn1/tasn_scn.o crypto/asn1/tasn_typ.o crypto/asn1/tasn_utl.o crypto/asn1/x_algor.o crypto/asn1/x_bignum.o crypto/asn1/x_info.o crypto/asn1/x_long.o crypto/asn1/x_pkey.o crypto/asn1/x_sig.o crypto/asn1/x_spki.o crypto/asn1/x_val.o crypto/async/arch/async_null.o crypto/async/arch/async_posix.o crypto/async/arch/async_win.o crypto/async/async.o crypto/async/async_err.o crypto/async/async_wait.o crypto/bio/b_addr.o crypto/bio/b_dump.o crypto/bio/b_sock.o crypto/bio/b_sock2.o crypto/bio/bf_buff.o crypto/bio/bf_lbuf.o crypto/bio/bf_nbio.o crypto/bio/bf_null.o crypto/bio/bio_cb.o crypto/bio/bio_err.o crypto/bio/bio_lib.o crypto/bio/bio_meth.o crypto/bio/bss_acpt.o crypto/bio/bss_bio.o crypto/bio/bss_conn.o crypto/bio/bss_dgram.o crypto/bio/bss_fd.o crypto/bio/bss_file.o crypto/bio/bss_log.o crypto/bio/bss_mem.o crypto/bio/bss_null.o crypto/bio/bss_sock.o crypto/bn/bn_add.o crypto/bn/bn_asm.o crypto/bn/bn_blind.o crypto/bn/bn_const.o crypto/bn/bn_ctx.o crypto/bn/bn_depr.o crypto/bn/bn_dh.o crypto/bn/bn_div.o crypto/bn/bn_err.o crypto/bn/bn_exp.o crypto/bn/bn_exp2.o crypto/bn/bn_gcd.o crypto/bn/bn_gf2m.o crypto/bn/bn_intern.o crypto/bn/bn_kron.o crypto/bn/bn_lib.o crypto/bn/bn_mod.o crypto/bn/bn_mont.o crypto/bn/bn_mpi.o crypto/bn/bn_mul.o crypto/bn/bn_nist.o crypto/bn/bn_prime.o crypto/bn/bn_print.o crypto/bn/bn_rand.o crypto/bn/bn_recp.o crypto/bn/bn_shift.o crypto/bn/bn_sqr.o crypto/bn/bn_sqrt.o crypto/bn/bn_srp.o crypto/bn/bn_word.o crypto/bn/bn_x931p.o crypto/buffer/buf_err.o crypto/buffer/buffer.o crypto/cmac/cm_ameth.o crypto/cmac/cm_pmeth.o crypto/cmac/cmac.o crypto/comp/c_zlib.o crypto/comp/comp_err.o crypto/comp/comp_lib.o crypto/conf/conf_api.o crypto/conf/conf_def.o crypto/conf/conf_err.o crypto/conf/conf_lib.o crypto/conf/conf_mall.o crypto/conf/conf_mod.o crypto/conf/conf_sap.o crypto/cpt_err.o crypto/cryptlib.o crypto/cversion.o crypto/dh/dh_ameth.o crypto/dh/dh_asn1.o crypto/dh/dh_check.o crypto/dh/dh_depr.o crypto/dh/dh_err.o crypto/dh/dh_gen.o crypto/dh/dh_kdf.o crypto/dh/dh_key.o crypto/dh/dh_lib.o crypto/dh/dh_meth.o crypto/dh/dh_pmeth.o crypto/dh/dh_prn.o crypto/dh/dh_rfc5114.o crypto/dso/dso_dl.o crypto/dso/dso_dlfcn.o crypto/dso/dso_err.o crypto/dso/dso_lib.o crypto/dso/dso_openssl.o crypto/dso/dso_vms.o crypto/dso/dso_win32.o crypto/ebcdic.o crypto/err/err.o crypto/err/err_all.o crypto/err/err_prn.o crypto/evp/bio_b64.o crypto/evp/bio_enc.o crypto/evp/bio_md.o crypto/evp/bio_ok.o crypto/evp/c_allc.o crypto/evp/c_alld.o crypto/evp/cmeth_lib.o crypto/evp/digest.o crypto/evp/e_aes.o crypto/evp/e_aes_cbc_hmac_sha1.o crypto/evp/e_aes_cbc_hmac_sha256.o crypto/evp/e_bf.o crypto/evp/e_camellia.o crypto/evp/e_cast.o crypto/evp/e_chacha20_poly1305.o crypto/evp/e_des.o crypto/evp/e_des3.o crypto/evp/e_idea.o crypto/evp/e_null.o crypto/evp/e_old.o crypto/evp/e_rc2.o crypto/evp/e_rc4.o crypto/evp/e_rc4_hmac_md5.o crypto/evp/e_rc5.o crypto/evp/e_seed.o crypto/evp/e_xcbc_d.o crypto/evp/encode.o crypto/evp/evp_cnf.o crypto/evp/evp_enc.o crypto/evp/evp_err.o crypto/evp/evp_key.o crypto/evp/evp_lib.o crypto/evp/evp_pbe.o crypto/evp/evp_pkey.o crypto/evp/m_md2.o crypto/evp/m_md4.o crypto/evp/m_md5.o crypto/evp/m_md5_sha1.o crypto/evp/m_mdc2.o crypto/evp/m_null.o crypto/evp/m_ripemd.o crypto/evp/m_sha1.o crypto/evp/m_sigver.o crypto/evp/m_wp.o crypto/evp/names.o crypto/evp/p5_crpt.o crypto/evp/p5_crpt2.o crypto/evp/p_dec.o crypto/evp/p_enc.o crypto/evp/p_lib.o crypto/evp/p_open.o crypto/evp/p_seal.o crypto/evp/p_sign.o crypto/evp/p_verify.o crypto/evp/pmeth_fn.o crypto/evp/pmeth_gn.o crypto/evp/pmeth_lib.o crypto/evp/scrypt.o crypto/ex_data.o crypto/hmac/hm_ameth.o crypto/hmac/hm_pmeth.o crypto/hmac/hmac.o crypto/init.o crypto/kdf/hkdf.o crypto/kdf/kdf_err.o crypto/kdf/tls1_prf.o crypto/lhash/lh_stats.o crypto/lhash/lhash.o crypto/md5/md5_dgst.o crypto/md5/md5_one.o crypto/mem.o crypto/mem_clr.o crypto/mem_dbg.o crypto/mem_sec.o crypto/modes/cbc128.o crypto/modes/ccm128.o crypto/modes/cfb128.o crypto/modes/ctr128.o crypto/modes/cts128.o crypto/modes/gcm128.o crypto/modes/ocb128.o crypto/modes/ofb128.o crypto/modes/wrap128.o crypto/modes/xts128.o crypto/o_dir.o crypto/o_fips.o crypto/o_fopen.o crypto/o_init.o crypto/o_str.o crypto/o_time.o crypto/objects/o_names.o crypto/objects/obj_dat.o crypto/objects/obj_err.o crypto/objects/obj_lib.o crypto/objects/obj_xref.o crypto/ocsp/ocsp_asn.o crypto/ocsp/ocsp_cl.o crypto/ocsp/ocsp_err.o crypto/ocsp/ocsp_ext.o crypto/ocsp/ocsp_ht.o crypto/ocsp/ocsp_lib.o crypto/ocsp/ocsp_prn.o crypto/ocsp/ocsp_srv.o crypto/ocsp/ocsp_vfy.o crypto/ocsp/v3_ocsp.o crypto/pem/pem_all.o crypto/pem/pem_err.o crypto/pem/pem_info.o crypto/pem/pem_lib.o crypto/pem/pem_oth.o crypto/pem/pem_pk8.o crypto/pem/pem_pkey.o crypto/pem/pem_sign.o crypto/pem/pem_x509.o crypto/pem/pem_xaux.o crypto/pem/pvkfmt.o crypto/pkcs12/p12_add.o crypto/pkcs12/p12_asn.o crypto/pkcs12/p12_attr.o crypto/pkcs12/p12_crpt.o crypto/pkcs12/p12_crt.o crypto/pkcs12/p12_decr.o crypto/pkcs12/p12_init.o crypto/pkcs12/p12_key.o crypto/pkcs12/p12_kiss.o crypto/pkcs12/p12_mutl.o crypto/pkcs12/p12_npas.o crypto/pkcs12/p12_p8d.o crypto/pkcs12/p12_p8e.o crypto/pkcs12/p12_sbag.o crypto/pkcs12/p12_utl.o crypto/pkcs12/pk12err.o crypto/pkcs7/bio_pk7.o crypto/pkcs7/pk7_asn1.o crypto/pkcs7/pk7_attr.o crypto/pkcs7/pk7_doit.o crypto/pkcs7/pk7_lib.o crypto/pkcs7/pk7_mime.o crypto/pkcs7/pk7_smime.o crypto/pkcs7/pkcs7err.o crypto/rand/md_rand.o crypto/rand/rand_egd.o crypto/rand/rand_err.o crypto/rand/rand_lib.o crypto/rand/rand_unix.o crypto/rand/rand_vms.o crypto/rand/rand_win.o crypto/rand/randfile.o crypto/rc4/rc4_enc.o crypto/rc4/rc4_skey.o crypto/rsa/rsa_ameth.o crypto/rsa/rsa_asn1.o crypto/rsa/rsa_chk.o crypto/rsa/rsa_crpt.o crypto/rsa/rsa_depr.o crypto/rsa/rsa_err.o crypto/rsa/rsa_gen.o crypto/rsa/rsa_lib.o crypto/rsa/rsa_meth.o crypto/rsa/rsa_none.o crypto/rsa/rsa_null.o crypto/rsa/rsa_oaep.o crypto/rsa/rsa_ossl.o crypto/rsa/rsa_pk1.o crypto/rsa/rsa_pmeth.o crypto/rsa/rsa_prn.o crypto/rsa/rsa_pss.o crypto/rsa/rsa_saos.o crypto/rsa/rsa_sign.o crypto/rsa/rsa_ssl.o crypto/rsa/rsa_x931.o crypto/rsa/rsa_x931g.o crypto/sha/sha1_one.o crypto/sha/sha1dgst.o crypto/sha/sha256.o crypto/sha/sha512.o crypto/stack/stack.o crypto/threads_none.o crypto/threads_pthread.o crypto/threads_win.o crypto/txt_db/txt_db.o crypto/uid.o crypto/x509/by_dir.o crypto/x509/by_file.o crypto/x509/t_crl.o crypto/x509/t_req.o crypto/x509/t_x509.o crypto/x509/x509_att.o crypto/x509/x509_cmp.o crypto/x509/x509_d2.o crypto/x509/x509_def.o crypto/x509/x509_err.o crypto/x509/x509_ext.o crypto/x509/x509_lu.o crypto/x509/x509_obj.o crypto/x509/x509_r2x.o crypto/x509/x509_req.o crypto/x509/x509_set.o crypto/x509/x509_trs.o crypto/x509/x509_txt.o crypto/x509/x509_v3.o crypto/x509/x509_vfy.o crypto/x509/x509_vpm.o crypto/x509/x509cset.o crypto/x509/x509name.o crypto/x509/x509rset.o crypto/x509/x509spki.o crypto/x509/x509type.o crypto/x509/x_all.o crypto/x509/x_attrib.o crypto/x509/x_crl.o crypto/x509/x_exten.o crypto/x509/x_name.o crypto/x509/x_pubkey.o crypto/x509/x_req.o crypto/x509/x_x509.o crypto/x509/x_x509a.o crypto/x509v3/pcy_cache.o crypto/x509v3/pcy_data.o crypto/x509v3/pcy_lib.o crypto/x509v3/pcy_map.o crypto/x509v3/pcy_node.o crypto/x509v3/pcy_tree.o crypto/x509v3/v3_addr.o crypto/x509v3/v3_akey.o crypto/x509v3/v3_akeya.o crypto/x509v3/v3_alt.o crypto/x509v3/v3_asid.o crypto/x509v3/v3_bcons.o crypto/x509v3/v3_bitst.o crypto/x509v3/v3_conf.o crypto/x509v3/v3_cpols.o crypto/x509v3/v3_crld.o crypto/x509v3/v3_enum.o crypto/x509v3/v3_extku.o crypto/x509v3/v3_genn.o crypto/x509v3/v3_ia5.o crypto/x509v3/v3_info.o crypto/x509v3/v3_int.o crypto/x509v3/v3_lib.o crypto/x509v3/v3_ncons.o crypto/x509v3/v3_pci.o crypto/x509v3/v3_pcia.o crypto/x509v3/v3_pcons.o crypto/x509v3/v3_pku.o crypto/x509v3/v3_pmaps.o crypto/x509v3/v3_prn.o crypto/x509v3/v3_purp.o crypto/x509v3/v3_skey.o crypto/x509v3/v3_sxnet.o crypto/x509v3/v3_tlsf.o crypto/x509v3/v3_utl.o crypto/x509v3/v3err.o
 make: Leaving directory '/shim-15+dev76.f60ba43-13/Cryptlib/OpenSSL'
 if [ ! -d lib ]; then mkdir lib ; fi
-make VPATH=/shim-15+dev76.f60ba43-13/lib TOPDIR=/shim-15+dev76.f60ba43-13 CFLAGS="-ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/endless-uefi-ca.der\"" -C lib -f /shim-15+dev76.f60ba43-13/lib/Makefile lib.a
+make VPATH=/shim-15+dev76.f60ba43-13/lib TOPDIR=/shim-15+dev76.f60ba43-13 CFLAGS="-ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/deepin-uefi-ca.der\"" -C lib -f /shim-15+dev76.f60ba43-13/lib/Makefile lib.a
 make: Entering directory '/shim-15+dev76.f60ba43-13/lib'
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include -DDEFAULT_LOADER=L"\\grubx64.efi" -DDEFAULT_LOADER_CHAR="\\grubx64.efi" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT -DEFI_ARCH=L"x64" -DDEBUGDIR=L"/usr/lib/debug/usr/share/shim/x64-15-15/" -DVENDOR_CERT_FILE="debian/endless-uefi-ca.der" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o simple_file.o simple_file.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include -DDEFAULT_LOADER=L"\\grubx64.efi" -DDEFAULT_LOADER_CHAR="\\grubx64.efi" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT -DEFI_ARCH=L"x64" -DDEBUGDIR=L"/usr/lib/debug/usr/share/shim/x64-15-15/" -DVENDOR_CERT_FILE="debian/endless-uefi-ca.der" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o guid.o guid.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include -DDEFAULT_LOADER=L"\\grubx64.efi" -DDEFAULT_LOADER_CHAR="\\grubx64.efi" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT -DEFI_ARCH=L"x64" -DDEBUGDIR=L"/usr/lib/debug/usr/share/shim/x64-15-15/" -DVENDOR_CERT_FILE="debian/endless-uefi-ca.der" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o console.o console.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include -DDEFAULT_LOADER=L"\\grubx64.efi" -DDEFAULT_LOADER_CHAR="\\grubx64.efi" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT -DEFI_ARCH=L"x64" -DDEBUGDIR=L"/usr/lib/debug/usr/share/shim/x64-15-15/" -DVENDOR_CERT_FILE="debian/endless-uefi-ca.der" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o execute.o execute.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include -DDEFAULT_LOADER=L"\\grubx64.efi" -DDEFAULT_LOADER_CHAR="\\grubx64.efi" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT -DEFI_ARCH=L"x64" -DDEBUGDIR=L"/usr/lib/debug/usr/share/shim/x64-15-15/" -DVENDOR_CERT_FILE="debian/endless-uefi-ca.der" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o configtable.o configtable.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include -DDEFAULT_LOADER=L"\\grubx64.efi" -DDEFAULT_LOADER_CHAR="\\grubx64.efi" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT -DEFI_ARCH=L"x64" -DDEBUGDIR=L"/usr/lib/debug/usr/share/shim/x64-15-15/" -DVENDOR_CERT_FILE="debian/endless-uefi-ca.der" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o shell.o shell.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include -DDEFAULT_LOADER=L"\\grubx64.efi" -DDEFAULT_LOADER_CHAR="\\grubx64.efi" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT -DEFI_ARCH=L"x64" -DDEBUGDIR=L"/usr/lib/debug/usr/share/shim/x64-15-15/" -DVENDOR_CERT_FILE="debian/endless-uefi-ca.der" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o variables.o variables.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include -DDEFAULT_LOADER=L"\\grubx64.efi" -DDEFAULT_LOADER_CHAR="\\grubx64.efi" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT -DEFI_ARCH=L"x64" -DDEBUGDIR=L"/usr/lib/debug/usr/share/shim/x64-15-15/" -DVENDOR_CERT_FILE="debian/endless-uefi-ca.der" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o security_policy.o security_policy.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include -DDEFAULT_LOADER=L"\\grubx64.efi" -DDEFAULT_LOADER_CHAR="\\grubx64.efi" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT -DEFI_ARCH=L"x64" -DDEBUGDIR=L"/usr/lib/debug/usr/share/shim/x64-15-15/" -DVENDOR_CERT_FILE="debian/deepin-uefi-ca.der" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o simple_file.o simple_file.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include -DDEFAULT_LOADER=L"\\grubx64.efi" -DDEFAULT_LOADER_CHAR="\\grubx64.efi" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT -DEFI_ARCH=L"x64" -DDEBUGDIR=L"/usr/lib/debug/usr/share/shim/x64-15-15/" -DVENDOR_CERT_FILE="debian/deepin-uefi-ca.der" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o guid.o guid.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include -DDEFAULT_LOADER=L"\\grubx64.efi" -DDEFAULT_LOADER_CHAR="\\grubx64.efi" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT -DEFI_ARCH=L"x64" -DDEBUGDIR=L"/usr/lib/debug/usr/share/shim/x64-15-15/" -DVENDOR_CERT_FILE="debian/deepin-uefi-ca.der" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o console.o console.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include -DDEFAULT_LOADER=L"\\grubx64.efi" -DDEFAULT_LOADER_CHAR="\\grubx64.efi" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT -DEFI_ARCH=L"x64" -DDEBUGDIR=L"/usr/lib/debug/usr/share/shim/x64-15-15/" -DVENDOR_CERT_FILE="debian/deepin-uefi-ca.der" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o execute.o execute.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include -DDEFAULT_LOADER=L"\\grubx64.efi" -DDEFAULT_LOADER_CHAR="\\grubx64.efi" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT -DEFI_ARCH=L"x64" -DDEBUGDIR=L"/usr/lib/debug/usr/share/shim/x64-15-15/" -DVENDOR_CERT_FILE="debian/deepin-uefi-ca.der" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o configtable.o configtable.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include -DDEFAULT_LOADER=L"\\grubx64.efi" -DDEFAULT_LOADER_CHAR="\\grubx64.efi" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT -DEFI_ARCH=L"x64" -DDEBUGDIR=L"/usr/lib/debug/usr/share/shim/x64-15-15/" -DVENDOR_CERT_FILE="debian/deepin-uefi-ca.der" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o shell.o shell.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include -DDEFAULT_LOADER=L"\\grubx64.efi" -DDEFAULT_LOADER_CHAR="\\grubx64.efi" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT -DEFI_ARCH=L"x64" -DDEBUGDIR=L"/usr/lib/debug/usr/share/shim/x64-15-15/" -DVENDOR_CERT_FILE="debian/deepin-uefi-ca.der" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o variables.o variables.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include -DDEFAULT_LOADER=L"\\grubx64.efi" -DDEFAULT_LOADER_CHAR="\\grubx64.efi" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT -DEFI_ARCH=L"x64" -DDEBUGDIR=L"/usr/lib/debug/usr/share/shim/x64-15-15/" -DVENDOR_CERT_FILE="debian/deepin-uefi-ca.der" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o security_policy.o security_policy.c
 ar rcs lib.a simple_file.o guid.o console.o execute.o configtable.o shell.o variables.o security_policy.o
 make: Leaving directory '/shim-15+dev76.f60ba43-13/lib'
 ld -o shimx64.so --hash-style=sysv -nostdlib -znocombreloc -T /shim-15+dev76.f60ba43-13/elf_x86_64_efi.lds -shared -Bsymbolic -L/usr/lib -L/usr/lib64 -LCryptlib -LCryptlib/OpenSSL /usr/lib/crt0-efi-x86_64.o --build-id=sha1  --no-undefined shim.o mok.o netboot.o cert.o replacements.o tpm.o version.o errlog.o httpboot.o Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a lib/lib.a -lefi -lgnuefi --start-group Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a --end-group /usr/lib/gcc/x86_64-linux-gnu/8/libgcc.a
@@ -1737,7 +1739,7 @@ objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=shimx64.efi
 [91m4+0 records in
 4+0 records out
-4 bytes copied, 4.9476e-05 s, 80.8 kB/s
+4 bytes copied, 5.7805e-05 s, 69.2 kB/s
 [0mobjcopy -D -j .text -j .sdata -j .data \
 	-j .dynamic -j .dynsym -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame \
@@ -1745,9 +1747,9 @@ dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=shimx64.efi
 	-j .debug_line -j .debug_str -j .debug_ranges \
 	-j .note.gnu.build-id \
 	shimx64.so shimx64.efi.debug
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/endless-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o MokManager.o MokManager.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/endless-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o PasswordCrypt.o PasswordCrypt.c
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/endless-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o crypt_blowfish.o crypt_blowfish.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/deepin-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o MokManager.o MokManager.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/deepin-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o PasswordCrypt.o PasswordCrypt.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/deepin-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o crypt_blowfish.o crypt_blowfish.c
 ld -o mmx64.so --hash-style=sysv -nostdlib -znocombreloc -T /shim-15+dev76.f60ba43-13/elf_x86_64_efi.lds -shared -Bsymbolic -L/usr/lib -L/usr/lib64 -LCryptlib -LCryptlib/OpenSSL /usr/lib/crt0-efi-x86_64.o --build-id=sha1  --no-undefined MokManager.o PasswordCrypt.o crypt_blowfish.o Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a lib/lib.a -lefi -lgnuefi --start-group Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a --end-group /usr/lib/gcc/x86_64-linux-gnu/8/libgcc.a lib/lib.a
 objcopy -D -j .text -j .sdata -j .data \
 	-j .dynamic -j .dynsym -j .rel* \
@@ -1756,7 +1758,7 @@ objcopy -D -j .text -j .sdata -j .data \
 	-j .debug_line -j .debug_str -j .debug_ranges \
 	-j .note.gnu.build-id \
 	mmx64.so mmx64.efi.debug
-gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/endless-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o fallback.o fallback.c
+gcc -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic -fshort-wchar -Wall -Wsign-compare -Werror -fno-builtin -Werror=sign-compare -ffreestanding -std=gnu89 -I/usr/lib/gcc/x86_64-linux-gnu/8/include "-DDEFAULT_LOADER=L\"\\\\grubx64.efi\"" "-DDEFAULT_LOADER_CHAR=\"\\\\grubx64.efi\"" -nostdinc -I/shim-15+dev76.f60ba43-13/Cryptlib -I/shim-15+dev76.f60ba43-13/Cryptlib/Include -I/usr/include/efi -I/usr/include/efi/x86_64 -I/usr/include/efi/protocol -I/shim-15+dev76.f60ba43-13/include -iquote /shim-15+dev76.f60ba43-13 -iquote /shim-15+dev76.f60ba43-13 -mno-mmx -mno-sse -mno-red-zone -nostdinc -maccumulate-outgoing-args -m64 -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096 -DENABLE_HTTPBOOT "-DEFI_ARCH=L\"x64\"" "-DDEBUGDIR=L\"/usr/lib/debug/usr/share/shim/x64-15-15/\"" -DVENDOR_CERT_FILE=\"debian/deepin-uefi-ca.der\" -Wdate-time -D_FORTIFY_SOURCE=2  -c -o fallback.o fallback.c
 ld -o fbx64.so --hash-style=sysv -nostdlib -znocombreloc -T /shim-15+dev76.f60ba43-13/elf_x86_64_efi.lds -shared -Bsymbolic -L/usr/lib -L/usr/lib64 -LCryptlib -LCryptlib/OpenSSL /usr/lib/crt0-efi-x86_64.o --build-id=sha1  --no-undefined fallback.o tpm.o errlog.o Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a lib/lib.a -lefi -lgnuefi --start-group Cryptlib/libcryptlib.a Cryptlib/OpenSSL/libopenssl.a --end-group /usr/lib/gcc/x86_64-linux-gnu/8/libgcc.a
 objcopy -D -j .text -j .sdata -j .data \
 	-j .dynamic -j .dynsym -j .rel* \
@@ -1774,7 +1776,7 @@ objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=mmx64.efi
 [91m4+0 records in
 4+0 records out
-4 bytes copied, 4.3037e-05 s, 92.9 kB/s
+4 bytes copied, 4.377e-05 s, 91.4 kB/s
 [0mobjcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	-j .dynamic -j .dynsym -j .rel* \
 	-j .rela* -j .reloc -j .eh_frame \
@@ -1784,7 +1786,7 @@ dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=mmx64.efi
 dd conv=notrunc bs=1 count=4 seek=136 if=/dev/zero of=fbx64.efi
 [91m4+0 records in
 4+0 records out
-4 bytes copied, 3.7102e-05 s, 108 kB/s
+4 bytes copied, 4.2367e-05 s, 94.4 kB/s
 [0mmake: Leaving directory '/shim-15+dev76.f60ba43-13'
 make[1]: Leaving directory '/shim-15+dev76.f60ba43-13'
    dh_auto_test -O--parallel
@@ -1794,13 +1796,13 @@ make[1]: Leaving directory '/shim-15+dev76.f60ba43-13'
    dh_prep -O--parallel
    debian/rules override_dh_auto_install
 make[1]: Entering directory '/shim-15+dev76.f60ba43-13'
-dh_auto_install --destdir=debian/tmp -- RELEASE=15 COMMIT_ID=a4a1fbe728c9545fc5647129df0cf1593b953bec MAKELEVEL=0 EFI_PATH=/usr/lib ENABLE_HTTPBOOT=true ENABLE_SBSIGN=1 VENDOR_CERT_FILE=debian/endless-uefi-ca.der EFIDIR=endless 
-	make -j8 install DESTDIR=/shim-15\+dev76.f60ba43-13/debian/tmp AM_UPDATE_INFO_DIR=no RELEASE=15 COMMIT_ID=a4a1fbe728c9545fc5647129df0cf1593b953bec MAKELEVEL=0 EFI_PATH=/usr/lib ENABLE_HTTPBOOT=true ENABLE_SBSIGN=1 VENDOR_CERT_FILE=debian/endless-uefi-ca.der EFIDIR=endless
+dh_auto_install --destdir=debian/tmp -- RELEASE=15 COMMIT_ID=a4a1fbe728c9545fc5647129df0cf1593b953bec MAKELEVEL=0 EFI_PATH=/usr/lib ENABLE_HTTPBOOT=true ENABLE_SBSIGN=1 VENDOR_CERT_FILE=debian/deepin-uefi-ca.der EFIDIR=deepin 
+	make -j4 install DESTDIR=/shim-15\+dev76.f60ba43-13/debian/tmp AM_UPDATE_INFO_DIR=no RELEASE=15 COMMIT_ID=a4a1fbe728c9545fc5647129df0cf1593b953bec MAKELEVEL=0 EFI_PATH=/usr/lib ENABLE_HTTPBOOT=true ENABLE_SBSIGN=1 VENDOR_CERT_FILE=debian/deepin-uefi-ca.der EFIDIR=deepin
 make: Entering directory '/shim-15+dev76.f60ba43-13'
 gcc -Og -g3 -Wall -Werror -Wextra -o buildid /shim-15+dev76.f60ba43-13/buildid.c -lelf
 Making BOOTX64.CSV
 install -d -m 0755 /shim-15+dev76.f60ba43-13/debian/tmp/
-install -d -m 0755 /shim-15+dev76.f60ba43-13/debian/tmp//usr/lib/debug/boot/efi/EFI/endless//
+install -d -m 0755 /shim-15+dev76.f60ba43-13/debian/tmp//usr/lib/debug/boot/efi/EFI/deepin//
 install -d -m 0755 /shim-15+dev76.f60ba43-13/debian/tmp//usr/src/debug//shim-15-15
 find /shim-15+dev76.f60ba43-13 -type f -a '(' -iname '*.c' -o -iname '*.h' -o -iname '*.S' ')' | while read file ; do \
 	outfile=$(echo ${file} | sed -e "s,^/shim-15+dev76.f60ba43-13,,") ; \
@@ -1810,13 +1812,13 @@ done
 install -d -m 0755 /shim-15+dev76.f60ba43-13/debian/tmp/
 install -d -m 0700 /shim-15+dev76.f60ba43-13/debian/tmp/boot/efi/
 install -d -m 0755 /shim-15+dev76.f60ba43-13/debian/tmp/boot/efi/EFI/BOOT/
-install -d -m 0755 /shim-15+dev76.f60ba43-13/debian/tmp/boot/efi/EFI/endless/
+install -d -m 0755 /shim-15+dev76.f60ba43-13/debian/tmp/boot/efi/EFI/deepin/
 install -m 0644 shimx64.efi /shim-15+dev76.f60ba43-13/debian/tmp/boot/efi/EFI/BOOT//BOOTX64.EFI
-install -m 0644 shimx64.efi /shim-15+dev76.f60ba43-13/debian/tmp/boot/efi/EFI/endless//
-install -m 0644 BOOTX64.CSV /shim-15+dev76.f60ba43-13/debian/tmp/boot/efi/EFI/endless//
+install -m 0644 shimx64.efi /shim-15+dev76.f60ba43-13/debian/tmp/boot/efi/EFI/deepin//
+install -m 0644 BOOTX64.CSV /shim-15+dev76.f60ba43-13/debian/tmp/boot/efi/EFI/deepin//
 install -m 0644 fbx64.efi /shim-15+dev76.f60ba43-13/debian/tmp/boot/efi/EFI/BOOT//
 install -m 0644 mmx64.efi /shim-15+dev76.f60ba43-13/debian/tmp/boot/efi/EFI/BOOT//
-install -m 0644 mmx64.efi /shim-15+dev76.f60ba43-13/debian/tmp/boot/efi/EFI/endless//
+install -m 0644 mmx64.efi /shim-15+dev76.f60ba43-13/debian/tmp/boot/efi/EFI/deepin//
 make: Leaving directory '/shim-15+dev76.f60ba43-13'
 make[1]: Leaving directory '/shim-15+dev76.f60ba43-13'
    dh_install -O--parallel
@@ -1841,35 +1843,35 @@ make[1]: Leaving directory '/shim-15+dev76.f60ba43-13'
 [91mdpkg-gencontrol: warning: Depends field of package shim: substitution variable ${shlibs:Depends} used, but is not defined
 [0m   dh_md5sums -O--parallel
    dh_builddeb -O--parallel
-dpkg-deb: building package 'shim-efi-image' in '../shim-efi-image_15+dev76.f60ba43-13_amd64.deb'.
 dpkg-deb: building package 'shim' in '../shim_15+dev76.f60ba43-13_amd64.deb'.
+dpkg-deb: building package 'shim-efi-image' in '../shim-efi-image_15+dev76.f60ba43-13_amd64.deb'.
 [91m dpkg-genbuildinfo
 [0m[91m dpkg-genchanges  >../shim_15+dev76.f60ba43-13_amd64.changes
 [0m[91mdpkg-genchanges: info: including full source code in upload
 [0m[91m dpkg-source --after-build .
 [0mdpkg-source: info: using options from shim-15+dev76.f60ba43-13/debian/source/options: --compression=gzip
 dpkg-buildpackage: info: full upload; Debian-native package (full source is included)
-Removing intermediate container 2bcb133f5bd8
- ---> 09ac2709ad5a
-Step 16/19 : WORKDIR /
- ---> Running in 8d0bea57d52b
-Removing intermediate container 8d0bea57d52b
- ---> 1e8fd9b2e0a6
-Step 17/19 : RUN dpkg-deb -x shim-efi-image_15+dev76.f60ba43-13_amd64.deb shim-efi-image
- ---> Running in af193cad7ed7
-Removing intermediate container af193cad7ed7
- ---> 3075409c7cc9
-Step 18/19 : RUN cp shim-efi-image/boot/efi/EFI/endless/shimx64.efi .
- ---> Running in 4f8027478d60
-Removing intermediate container 4f8027478d60
- ---> 5939f0679471
-Step 19/19 : RUN sha256sum shimx64.efi
- ---> Running in c0cbd2c51dcd
-4a2f9d9c740c0b7b3c3e0450281bdd024e7a1e24323b42458dadb0443b88a36f  shimx64.efi
-Removing intermediate container c0cbd2c51dcd
- ---> 827514568e15
-Successfully built 827514568e15
-Successfully tagged endless-shim-review:latest
-f63a5349ebccf05c5fb5b52ef399c7daab7d420ccf043b1afb1d670535ca9cab
+Removing intermediate container a1bc166d7e41
+ ---> 5cd13b435bb1
+Step 17/20 : WORKDIR /
+ ---> Running in 655dbac2e21e
+Removing intermediate container 655dbac2e21e
+ ---> d88c32ffa21b
+Step 18/20 : RUN dpkg-deb -x shim-efi-image_15+dev76.f60ba43-13_amd64.deb shim-efi-image
+ ---> Running in 668972d6cc9b
+Removing intermediate container 668972d6cc9b
+ ---> 6a0c82026dd4
+Step 19/20 : RUN cp shim-efi-image/boot/efi/EFI/deepin/shimx64.efi .
+ ---> Running in 7e2824d1836b
+Removing intermediate container 7e2824d1836b
+ ---> aa4c77d8edb1
+Step 20/20 : RUN sha256sum shimx64.efi
+ ---> Running in 72fd92501f3e
+9f0d91956750b9ef48a5996ef99c2bdafe3cf0681899d39808db256dd19988ce  shimx64.efi
+Removing intermediate container 72fd92501f3e
+ ---> 3af9697566ed
+Successfully built 3af9697566ed
+Successfully tagged deepin-shim-review:latest
+1555022d031864794a278f4e02519cd51189c4ab519721c4bfd3c35dceb1a564
 shimx64.efi: OK
-To remove the container image used for this build: sudo docker image rm endless-shim-review
+To remove the container image used for this build: sudo docker image rm deepin-shim-review
